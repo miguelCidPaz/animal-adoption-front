@@ -13,7 +13,7 @@ export default function Footer() {
         </section>
         <section className="aboutUsLink"></section>
         <section className="maps">
-           
+        [
         </section>
     </footer>
     )
