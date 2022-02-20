@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar/NavBar";
 function MainView() {
   return (
     <div>
-      <NavBar />
+      <NavBar variant="contained" color="primary" />
       <p>Estas en la home</p>
     </div>
   );
