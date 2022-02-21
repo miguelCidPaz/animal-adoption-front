@@ -13,7 +13,11 @@ export default function Footer() {
                     <li>schedule: </li>
                 </ul>
             </section>
-            <section className="aboutUsLink"></section>
+            <section className="aboutUsLink">
+                <Link to={'/about-us'}>
+                    learn more about our shelter
+                </Link>
+            </section>
             <section className="maps">
                 <MapContainer />
             </section>
