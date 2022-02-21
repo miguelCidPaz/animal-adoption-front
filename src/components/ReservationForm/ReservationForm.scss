@@ -8,6 +8,7 @@
   font-size: 15px;
   color: #92cf94;
   background: #ffffff;
+
   .required {
     color: red;
   }
@@ -16,14 +17,27 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 90%;
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+    }
   }
+
   .leftside {
     margin-top: 30px;
     width: 50%;
+
+    @media (max-width: 900px) {
+      width: 100%;
+    }
   }
   .rightside {
     margin-top: 30px;
     width: 50%;
+
+    @media (max-width: 900px) {
+      width: 100%;
+    }
   }
   input {
     border-width: 1px;
@@ -49,7 +63,11 @@
   }
 }
 .box {
-  width: 80%;
+  width: 90%;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 }
 /*Botón de enviar*/
 .submitButton {
