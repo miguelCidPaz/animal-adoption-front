@@ -1,6 +1,32 @@
+
+
 footer {
     max-width: 100%;
+    background-color: #2d2e31;
+    color: #ffffff;
+    
+    //font-weight: bold;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    padding: 1%;
+
+    .footer-title{
+        margin-bottom: 10px;
+        margin-top: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .routerLink {
+        color: inherit;
+    }
 }
