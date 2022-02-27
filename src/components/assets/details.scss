@@ -1,0 +1,53 @@
+$button-color: #12CDD4;
+$button-hover-color: #34b3d3;
+
+.imageBox {
+    position: relative;
+    float: left;
+  }
+  
+  .imageBox .hoverImg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+  }
+  
+  .imageBox:hover .hoverImg {
+    display: block;
+  }
+
+ .details__adopt-button {
+    cursor: pointer;
+    font-weight: 700;
+    font-family: Helvetica,"sans-serif";
+    transition: all .2s;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: $button-color;
+    color: white;
+    font-weight: bolder;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+ }
+   
+ .details__adopt-button:hover {
+    background: $button-hover-color;
+ }
+   
+ .details__adopt-button > svg {
+    width: 34px;
+    margin-left: 10px;
+    transition: transform .3s ease-in-out;
+ }
+   
+.details__adopt-button:hover svg {
+    transform: translateX(5px);
+ }
+   
+ .details__adopt-button:active {
+    transform: scale(0.95);
+ }
+   
