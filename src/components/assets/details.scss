@@ -1,21 +1,75 @@
-$button-color: #12CDD4;
+$main-color: #12CDD4;
+$secondary-text-color: #707a7a;
 $button-hover-color: #34b3d3;
 
-.imageBox {
-    position: relative;
-    float: left;
-  }
+// .imageBox {
+//     position: relative;
+//     float: left;
+//   }
   
-  .imageBox .hoverImg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: none;
-  }
+//   .imageBox .hoverImg {
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     display: none;
+//   }
   
-  .imageBox:hover .hoverImg {
-    display: block;
-  }
+//   .imageBox:hover .hoverImg {
+//     display: block;
+//   }
+
+.details-main {
+   margin: 25px;
+   padding: 20px;
+   display: flex;
+   flex-direction: row;
+}
+
+img {
+   width: 450px;
+}
+
+#main { 
+   border: $main-color solid 20px;
+   box-shadow: 0px 0px 8px #888888;
+   max-width: 450px;
+   margin: 20px 70px 0px 40px;
+   display: flex
+}
+
+.swiper-wrapper {
+   max-width: 500px;
+}
+
+.details__pet-name {
+   font-size: 80px;
+   font-style: italic;
+   font-weight: bold;
+   color: $main-color;
+   margin-bottom: 35px;
+}
+
+.details__pet-description {
+   max-width: 750px;
+   font-size: 30px;
+   color: $secondary-text-color;
+   margin-bottom: 40px;
+}
+
+.details__pet-category {
+   font-size: 30px;
+   margin-bottom: 50px;
+}
+
+.category {
+   color: $secondary-text-color;
+   font-weight: bold;
+}
+
+.category-name {
+   color: $main-color;
+   font-weight: bold;
+}
 
  .details__adopt-button {
     cursor: pointer;
@@ -24,13 +78,14 @@ $button-hover-color: #34b3d3;
     transition: all .2s;
     padding: 10px 20px;
     border-radius: 100px;
-    background: $button-color;
+    background: $main-color;
     color: white;
     font-weight: bolder;
     border: 1px solid transparent;
     display: flex;
     align-items: center;
-    font-size: 15px;
+    font-size: 30px;
+    box-shadow: 0px 0px 8px #888888;
  }
    
  .details__adopt-button:hover {
@@ -50,4 +105,33 @@ $button-hover-color: #34b3d3;
  .details__adopt-button:active {
     transform: scale(0.95);
  }
-   
+
+ .details-description {
+   align-self: center;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   font-size: 30px;
+   margin-top: 40px;
+   padding: 10px;
+   border: 2px $secondary-text-color solid;
+   width: 650px;
+   box-shadow: 0px 0px 8px #888888;
+ }
+ .description-title {
+    font-size: 50px;
+    font-weight: bold;
+    color: $main-color;
+    margin-bottom: 25px;
+ }
+
+ li {
+   margin-bottom: 15px;
+   color: $secondary-text-color;
+   font-weight: bold;
+ }
+
+ .component {
+    display: flex;
+    flex-direction: column;
+ }
