@@ -7,11 +7,20 @@ export default function App() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      name:'',
+      personalID: '',
+      age:'18',
+      address:'',
+      province:'',
+      adoptionMotive: '',
+      petHistory:''
+    }
+  });
+  const requiredInputError = 'this is required';
   const onSubmit = (data) => console.log(data);
   console.log(errors);
-
-  console.log(watch("FullName")); // podemos ver el valor de lo que pasamos
 
   return (
     <form id="form" className="form" onSubmit={handleSubmit(onSubmit)}>
@@ -29,8 +38,9 @@ export default function App() {
               type="text"
               placeholder="Enter your full name"
               id="FullName"
-              {...register("FullName", { required: true })}
+              {...register("name", { required: { value: true, message: requiredInputError } })}
             />
+            <sub className="error-message">{errors.name?.message}</sub>
           </div>
           <br />
 
@@ -48,14 +58,16 @@ export default function App() {
               type="text"
               id="DNI"
               placeholder="Enter your DNI"
-              {...register("DNI", { required: true, max: 0, maxLength: 9 })}
+              {...register("personalID", { required: { value: true, message: requiredInputError }, maxLength: 9 })}
             />
+            <sub className="error-message">{errors.personalID?.message}</sub>
           </div>
           <br />
           <br />
           <div className="box">
             <label for="Age">
               <b>Adopter's age </b>
+              <span className="required">*</span>
               <br />
             </label>
             <br />
@@ -63,8 +75,9 @@ export default function App() {
               type="number"
               placeholder="18"
               id="Age"
-              {...register("Age", { required: true, min: 18 })}
+              {...register("age", { required: { value: true, message: requiredInputError }, min: 18 })}
             />
+            <sub className="error-message">{errors.age?.message}</sub>
             <br />
             <br />
             <br />
@@ -73,6 +86,7 @@ export default function App() {
           <div className="box">
             <label for="Residence">
               <b>Place of residence</b>
+              <span className="required">*</span>
               <br />
             </label>
             <br />
@@ -80,8 +94,9 @@ export default function App() {
               type="text"
               id="Residence"
               placeholder="Enter your place of residence"
-              {...register("Place of residence", {})}
+              {...register("address", { required: { value: true, message: requiredInputError } })}
             />
+            <sub className="error-message">{errors.address?.message}</sub>
           </div>
           <br />
           <br />
@@ -97,7 +112,7 @@ export default function App() {
               type="text"
               id="Province"
               placeholder="Enter your province"
-              {...register("Province", {})}
+              {...register("province")}
             />
             <br />
             <br />
@@ -118,10 +133,11 @@ export default function App() {
               rows={5}
               id="Question1"
               placeholder="Enter your answer"
-              {...register("Why do you want to adopt a pet?", {
-                required: true,
+              {...register("adoptionMotive", {
+                required: { value: true, message: requiredInputError },
               })}
             />
+            <sub className="error-message">{errors.adoptionMotive?.message}</sub>
           </div>
           <br />
           <br />
@@ -141,8 +157,9 @@ export default function App() {
               rows={5}
               id="Question2"
               placeholder="Enter your answer"
-              {...register("Have you had animals before?", { required: true })}
+              {...register("petHistory", { required: { value: true, message: requiredInputError } })}
             />
+            <sub className="error-message">{errors.petHistory?.message}</sub>
           </div>
         </div>
       </div>
