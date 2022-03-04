@@ -2,14 +2,14 @@ import React from "react";
 import "./assets/styles.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./views/Home";
-import Details from "./views/Details";
+import PetDetails from "./views/PetDetails";
 function App() {
   return (
     <main>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="pet/:id/details" element={<Details />} />
+          <Route path="pet/:id/details" element={<PetDetails />} />
         </Routes>
       </BrowserRouter>
     </main>
