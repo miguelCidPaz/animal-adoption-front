@@ -16,9 +16,11 @@ export default function Footer() {
             </section>
             <section className="footer-aboutUs">
                 <div className="footer-title">About us</div>
-                <Link to={'/about-us'} className="routerLink">
-                    learn more about our shelter
-                </Link>
+                <div className="routerLinkBox">
+                    <Link to={'/about-us'} className="routerLink">
+                        learn more about our shelter
+                    </Link>
+                </div>
             </section>
             <section className="footer-maps">
                 <div className="footer-title">Find us</div>
