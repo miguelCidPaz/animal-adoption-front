@@ -1,17 +1,26 @@
 export default function PetCard() {
   return (
-    <div id="imageBox">
-      <div className="imageInn">
-        <img
-          src="https://adopcionanimal.es/wp-content/uploads/2022/02/Galo_1.jpg"
-          alt="Default Image"
-        />
-      </div>
-      <div class="hoverImg">
-        <img
-          src="https://adopcionanimal.es/wp-content/uploads/2022/02/Galo_2.jpg"
-          alt="Profile Image"
-        />
+    <div className="cardBox" >
+      <div id="imageBox"> 
+      <img
+        className="bottomimg"
+        src="https://adopcionanimal.es/wp-content/uploads/2022/02/Galo_1.jpg"
+        alt="Default Image"
+      />
+
+      <img
+        class="topimg"
+        src="https://adopcionanimal.es/wp-content/uploads/2022/02/Galo_2.jpg"
+        alt="Profile Image"
+      />
+      </div>      
+
+      <div className="options">
+        <p>Richi</p>
+        <div className="buttonsFlex">
+        <button>adopt</button>
+        <button>details</button>
+        </div>        
       </div>
     </div>
   );

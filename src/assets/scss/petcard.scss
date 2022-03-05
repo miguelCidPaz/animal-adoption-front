@@ -1,22 +1,49 @@
-#imageBox {
-  position:relative;
-  height:281px;
-  width:450px;
-  margin:0 auto;
+$color-turquoise: #34b3d3;
 
+.cardBox{
+  display: flex;  
+  justify-content:space-around;
+  flex-direction: row;
+  align-items: center;  
+  flex-direction: column;
+  background-color: $color-turquoise;
+  padding: 10px;  
+  height:300px;
+  width: 300px;  
+}
+
+#imageBox {  
+  position: relative;
+  height:200px;
+  width: 200px;
+  margin:0 auto;  
+  padding: 0; 
 }
 
 #imageBox img{
   position:absolute;
-  left:0;
-  -webkit-transition: opacity 1s ease-in-out;
-  -moz-transition: opacity 1s ease-in-out;
-  -o-transition: opacity 1s ease-in-out;
-  transition: opacity 1s ease-in-out;
+  width: 200px;
+  height: 200px;
+  
+  
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
+.options{
+  display: flex;
+  width: 200px;  
+  height: 50px;
+  align-items: center;
+  justify-content:space-around;
+  }
+  .buttonsFlex{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-
-
-#imageBox img.hoverImg:hover  {
+#imageBox img.topimg:hover  {
   opacity:0;
 }

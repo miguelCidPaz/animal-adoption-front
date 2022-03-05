@@ -3,8 +3,7 @@ import Pet from '../components/PetCard'
 function MainView() {
   return (
     <div>
-      <p>Estas en la home</p>
-      <Pet/>
+      <p>Estas en la home</p>   
     </div>
   );
 }
