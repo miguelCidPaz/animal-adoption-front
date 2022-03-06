@@ -3,6 +3,7 @@ import { useState, useContext, createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./assets/styles.scss";
+import Footer from './components/Footer'
 import Home from "./views/Home";
 import axios from "axios";
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/" element={<Home />} />
           </Routes>
         </petsContext.Provider>
+        <Footer />
       </BrowserRouter>
     </main>
   );
