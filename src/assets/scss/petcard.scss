@@ -1,49 +1,57 @@
 $color-turquoise: #34b3d3;
 
-.cardBox{
-  display: flex;  
-  justify-content:space-around;
+.petcard-box {
+  display: flex;
+  justify-content: space-around;
   flex-direction: row;
-  align-items: center;  
+  align-items: center;
   flex-direction: column;
   background-color: $color-turquoise;
-  padding: 10px;  
-  height:300px;
-  width: 300px;  
+  padding: 10px;
+  height: 300px;
+  width: 300px;
+  margin: 10px;
 }
 
-#imageBox {  
+#petcard-img_box {
   position: relative;
-  height:200px;
+  height: 200px;
   width: 200px;
-  margin:0 auto;  
-  padding: 0; 
+  margin: 0 auto;
+  padding: 0;
 }
 
-#imageBox img{
-  position:absolute;
+#petcard-img_box img {
+  position: absolute;
   width: 200px;
   height: 200px;
-  
-  
   -webkit-transition: opacity 0.5s ease-in-out;
   -moz-transition: opacity 0.5s ease-in-out;
   -o-transition: opacity 0.5s ease-in-out;
   transition: opacity 0.5s ease-in-out;
 }
-.options{
-  display: flex;
-  width: 200px;  
-  height: 50px;
-  align-items: center;
-  justify-content:space-around;
-  }
-  .buttonsFlex{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-#imageBox img.topimg:hover  {
-  opacity:0;
+#petcard-img_box img.petcard-img_top:hover {
+  opacity: 0;
 }
+.petcard-options {
+  display: flex;
+  width: 200px;
+  height: 70px;
+  align-items: center;
+  justify-content: space-around;  
+}
+.petcard-options_buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  height: 100%;
+}
+.petcard-options p{
+  color: #FFF;
+}
+.petcard-options button{
+  color: $color-turquoise;
+}
+
+
