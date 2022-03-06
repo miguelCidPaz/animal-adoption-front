@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link, useParams } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
 
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,24 +9,29 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import useFindCurrentPet from "../hooks/useCurrentPet";
+import { petsContext } from "../App";
+import useFindCurrentPet from "./hooks/useFindCurrentPet";
+import axios from "axios";
 
 export default function Details() {
     const { id } = useParams();
-    //const { pets, setPets } = useContext(petsDataContext);
-    //mocked info
-    //const { currentPet } = useFindCurrentPet(id, petsContext);
-    const pet = {
-        name: 'Galo',
-        description: 'Richi is still very young. He is a confident, energetic and good-tempered dog. Sociable with people and like-minded dogs, he needs a welcoming home to express his full potential.',
-        category: ['dog'],
-        images: ['https://adopcionanimal.es/wp-content/uploads/2022/02/Galo_4.jpg', 'https://adopcionanimal.es/wp-content/uploads/2022/02/Galo_1.jpg'],
-        gender: 'male',
-        breed: 'mixed',
-        size: 'big',
-        weight: 45,
-        rescued: '12/12/24'
-    }
+    const { pets, setPets } = useContext(petsContext);
+    const [currentPet, setCurrentPet] = useState({});
+    const findCurrentPet = useFindCurrentPet();
+    const categories = [currentPet.species, currentPet.size];
+    const missingDataMessage = 'unknown';
+
+    console.log(currentPet.name);
+    useEffect(async () => {
+        if (pets.length < 1) {
+            const apiURL = process.env.REACT_APP_API_URL;
+            const response = await axios.get(`${apiURL}pets/`);
+            setPets({ ...response.data });
+        }
+        const pet = findCurrentPet(id, pets);
+        setCurrentPet({ ...pet });
+    }, [pets])
+
     return (
         <div className="component">
             <section className="details-main">
@@ -37,27 +43,18 @@ export default function Details() {
                     pagination={{ clickable: true }}
                     scrollbar={{ draggable: true }}>
                     {
-                        pet.images.map((image) => (
+                        (Object.keys(currentPet).length) ? currentPet.images.map((image) => (
                             <SwiperSlide className="swiper-slide">
                                 <img src={`${image}`} />
                             </SwiperSlide>
-                        ))
+                        )) : <></>
                     }
                 </Swiper>
-                {/* image component */}
-                {/* <div class="imageBox">
-                <div class="imageInn">
-                    <img src="https://adopcionanimal.es/wp-content/uploads/2022/02/Galo_1.jpg" alt="Default Image"/>
-                </div>
-                <div class="hoverImg">
-                    <img src="https://adopcionanimal.es/wp-content/uploads/2022/02/Galo_2.jpg" alt="Profile Image"/>
-                </div>
-            </div> */}
                 <section className="details__pet-data">
-                    <div className="details__pet-name">{pet.name}</div>
-                    <div className="details__pet-description">{pet.description}</div>
+                    <div className="details__pet-name">{currentPet.name}</div>
+                    <div className="details__pet-description">{currentPet.description}</div>
                     <div className="details__pet-category">
-                        <span className="category">Category:</span> {pet.category.map((category) => <span className="category-name">{category}</span>)}
+                        <span className="category">Category:</span> {categories.map((category) => <span className="category-name">{category}</span>)}
                     </div>
                     <button className="details__adopt-button">
                         <Link to={`pet/${id}/adoption-form`}>
@@ -73,14 +70,12 @@ export default function Details() {
             <section className="details-description">
                 <div className="description-title">Description</div>
                 <ul>
-                    <li>Gender: {pet.gender}</li>
-                    <li>Breed: {pet.breed}</li>
-                    <li>Size: {pet.size}</li>
-                    <li>Weight: {pet.weight}kg</li>
-                    <li>Recued: {pet.rescued}</li>
+                    <li>Gender: {currentPet.gender || missingDataMessage} </li>
+                    <li>Size: {currentPet.size || missingDataMessage}</li>
+                    <li>Weight: {`${currentPet.weightKg}kg` || missingDataMessage} </li>
+                    <li>Recued: {currentPet.rescuedAt || missingDataMessage}</li>
                 </ul>
             </section>
         </div>
-
     )
 }
