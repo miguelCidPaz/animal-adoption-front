@@ -2,26 +2,12 @@ $main-color: #12CDD4;
 $secondary-text-color: #707a7a;
 $button-hover-color: #34b3d3;
 
-// .imageBox {
-//     position: relative;
-//     float: left;
-//   }
-  
-//   .imageBox .hoverImg {
-//     position: absolute;
-//     left: 0;
-//     top: 0;
-//     display: none;
-//   }
-//   .imageBox:hover .hoverImg {
-//     display: block;
-//   }
-
 .details-main {
    margin: 25px;
    padding: 20px;
+   width: 100%;
    display: flex;
-   flex-direction: row;
+   margin-bottom: 8%;
 }
 
 img {
@@ -32,8 +18,7 @@ img {
    border: $main-color solid 20px;
    box-shadow: 0px 0px 8px #888888;
    max-width: 450px;
-   margin: 20px 70px 0px 40px;
-   display: flex
+   margin: 20px 11% 0px 15%;
 }
 
 .swiper-wrapper {
@@ -41,7 +26,7 @@ img {
 }
 
 .details__pet-name {
-   font-size: 80px;
+   font-size: 700%;
    font-style: italic;
    font-weight: bold;
    color: $main-color;
@@ -56,18 +41,25 @@ img {
 }
 
 .details__pet-category {
-   font-size: 30px;
+   font-size: 260%;
    margin-bottom: 50px;
+}
+
+.details-main {
+   align-items: center;
 }
 
 .category {
    color: $secondary-text-color;
    font-weight: bold;
+   display: flex;
+   flex-direction: row;
 }
 
 .category-name {
    color: $main-color;
    font-weight: bold;
+   font-style: italic;
 }
 
  .details__adopt-button {
@@ -85,6 +77,11 @@ img {
     align-items: center;
     font-size: 30px;
     box-shadow: 0px 0px 8px #888888;
+ }
+
+ .link {
+    text-decoration:none;
+    color: #ffffff;
  }
    
  .details__adopt-button:hover {

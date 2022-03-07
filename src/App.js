@@ -19,7 +19,7 @@ function App() {
   const [pets, setPets] = useState({});
   const apiURL = process.env.REACT_APP_API_URL;
   useEffect(async () => {
-    const response = await axios.get(`${apiURL}pets/`);
+    const response = await axios.get(`${apiURL}pets`);
     setPets([...response.data]);
   }, [])
 

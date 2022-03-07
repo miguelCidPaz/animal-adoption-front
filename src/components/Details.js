@@ -20,8 +20,8 @@ export default function Details() {
     const findCurrentPet = useFindCurrentPet();
     const categories = [currentPet.species, currentPet.size];
     const missingDataMessage = 'unknown';
+    const loadingImgUrl = 'https://cdn.dribbble.com/users/1782673/screenshots/4683964/ezgif.com-video-to-gif__2_.gif';
 
-    console.log(currentPet.name);
     useEffect(async () => {
         if (pets.length < 1) {
             const apiURL = process.env.REACT_APP_API_URL;
@@ -29,8 +29,10 @@ export default function Details() {
             setPets({ ...response.data });
         }
         const pet = findCurrentPet(id, pets);
+        console.log(pet);
         setCurrentPet({ ...pet });
     }, [pets])
+    
 
     return (
         <div className="component">
@@ -43,21 +45,21 @@ export default function Details() {
                     pagination={{ clickable: true }}
                     scrollbar={{ draggable: true }}>
                     {
-                        (Object.keys(currentPet).length) ? currentPet.images.map((image) => (
-                            <SwiperSlide className="swiper-slide">
-                                <img src={`${image}`} />
+                        ((Object.keys(currentPet).length > 0) && (currentPet.images.length > 0)) ? currentPet.images.map((image) => (
+                            <SwiperSlide className="swiper-slide" key={`imagekey${image}`}>
+                                <img  key={image} src={`${image}`} />
                             </SwiperSlide>
-                        )) : <></>
+                        )) : <img key={loadingImgUrl} src={loadingImgUrl}/>
                     }
                 </Swiper>
                 <section className="details__pet-data">
                     <div className="details__pet-name">{currentPet.name}</div>
                     <div className="details__pet-description">{currentPet.description}</div>
                     <div className="details__pet-category">
-                        <span className="category">Category:</span> {categories.map((category) => <span className="category-name">{category}</span>)}
+                        <span className="category">Category:</span> {categories.map((category) => <span className="category-name" key={`${category}`}>{category}</span>)}
                     </div>
                     <button className="details__adopt-button">
-                        <Link to={`pet/${id}/adoption-form`}>
+                        <Link to={`pet/${id}/adoption-form`} className='link'>
                             <span>Adopt</span>
                         </Link>
                         <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
