@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function App() {
   const {
@@ -17,13 +18,20 @@ export default function App() {
       petHistory:''
     }
   });
-  //const valuesOutOfDatabase = ['petHistory', 'province', 'adoptionMotive',]
-  const requiredInputError = 'this is required';
-  const onSubmit = (data) => console.log(JSON.stringify(data));
-  console.log(errors);
+  const requiredInputErrorMessage = 'this is required';
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  async function submitReservation(userInput) {
+    console.log(userInput);
+    const apiURL = process.env.REACT_APP_API_URL;
+    const stringifiedData = JSON.stringify(userInput);
+    //const response = await axios.post(`${apiURL}reservation/`, stringifiedData);
+    navigate(`pet/${id}/reservation/completed`);
+  }
 
   return (
-    <form id="form" className="form" onSubmit={handleSubmit((onSubmit))}>
+    <form id="form" className="form" onSubmit={handleSubmit(submitReservation)}>
       <div className="questions">
         <div className="leftside">
           <div className="box">
@@ -38,7 +46,7 @@ export default function App() {
               type="text"
               placeholder="Enter your full name"
               id="FullName"
-              {...register("name", { required: { value: true, message: requiredInputError } })}
+              {...register("name", { required: { value: true, message: requiredInputErrorMessage } })}
             />
             <sub className="error-message">{errors.name?.message}</sub>
           </div>
@@ -58,7 +66,7 @@ export default function App() {
               type="text"
               id="DNI"
               placeholder="Enter your DNI"
-              {...register("personalID", { required: { value: true, message: requiredInputError }, maxLength: 9 })}
+              {...register("personalID", { required: { value: true, message: requiredInputErrorMessage }, maxLength: 9 })}
             />
             <sub className="error-message">{errors.personalID?.message}</sub>
           </div>
@@ -75,7 +83,7 @@ export default function App() {
               type="number"
               placeholder="18"
               id="Age"
-              {...register("age", { required: { value: true, message: requiredInputError }, min: 18 })}
+              {...register("age", { required: { value: true, message: requiredInputErrorMessage }, min: 18 })}
             />
             <sub className="error-message">{errors.age?.message}</sub>
             <br />
@@ -94,7 +102,7 @@ export default function App() {
               type="text"
               id="Residence"
               placeholder="Enter your place of residence"
-              {...register("address", { required: { value: true, message: requiredInputError } })}
+              {...register("address", { required: { value: true, message: requiredInputErrorMessage } })}
             />
             <sub className="error-message">{errors.address?.message}</sub>
           </div>
@@ -112,7 +120,6 @@ export default function App() {
               type="text"
               id="Province"
               placeholder="Enter your province"
-              {...register("province")}
             />
             <br />
             <br />
@@ -124,7 +131,6 @@ export default function App() {
                 Why do you want to adopt a pet? Who lives together in the family
                 home?
               </b>
-              <span className="required">*</span>
             </label>
           </div>
           <br />
@@ -133,9 +139,6 @@ export default function App() {
               rows={5}
               id="Question1"
               placeholder="Enter your answer"
-              {...register("adoptionMotive", {
-                required: { value: true, message: requiredInputError },
-              })}
             />
             <sub className="error-message">{errors.adoptionMotive?.message}</sub>
           </div>
@@ -148,7 +151,6 @@ export default function App() {
                 Have you had animals before, do you still have them, and if not,
                 why not, and do you have experience with animals?
               </b>
-              <span className="required">*</span>
             </label>
           </div>
           <br />
@@ -157,7 +159,6 @@ export default function App() {
               rows={5}
               id="Question2"
               placeholder="Enter your answer"
-              {...register("petHistory", { required: { value: true, message: requiredInputError } })}
             />
             <sub className="error-message">{errors.petHistory?.message}</sub>
           </div>
@@ -165,7 +166,6 @@ export default function App() {
       </div>
       <br />
       <br />
-      {/* Botón de enviar */}
       <button type="submit" className="submitButton">
         <div class="svg-wrapper-1">
           <div class="svg-wrapper">
