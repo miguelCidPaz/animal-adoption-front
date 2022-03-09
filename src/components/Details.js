@@ -56,10 +56,14 @@ export default function Details() {
                     <div className="details__pet-name">{currentPet.name}</div>
                     <div className="details__pet-description">{currentPet.description}</div>
                     <div className="details__pet-category">
-                        <span className="category">Category:</span> {categories.map((category) => <span className="category-name" key={`${category}`}>{category}</span>)}
+                        <span className="category">Category:</span>
+                        <ul className="category-list">
+                        {categories.map((category) => <li className="category-name" key={`${category}`}>{category}</li>)}
+                        </ul>
+                        
                     </div>
                     <button className="details__adopt-button">
-                        <Link to={`pet/${id}/rerservation`} className='link'>
+                        <Link push to={`pet/${id}/rerservation`} className='link'>
                             <span>Adopt</span>
                         </Link>
                         <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -70,7 +74,7 @@ export default function Details() {
                 </section>
             </section>
             <section className="details-description">
-                <div className="description-title">Description</div>
+                <div className="description-title">Other Features</div>
                 <ul>
                     <li>Gender: {currentPet.gender || missingDataMessage} </li>
                     <li>Size: {currentPet.size || missingDataMessage}</li>

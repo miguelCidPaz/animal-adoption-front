@@ -1,11 +1,11 @@
-$main-color: #12CDD4;
+$main-color: #12cdd4;
 $secondary-text-color: #707a7a;
 $button-hover-color: #34b3d3;
 
 .details-main {
    margin: 25px;
    padding: 20px;
-   width: 100%;
+   max-width: 100%;
    display: flex;
    margin-bottom: 8%;
 }
@@ -14,11 +14,11 @@ img {
    width: 450px;
 }
 
-#main { 
+#main {
    border: $main-color solid 20px;
    box-shadow: 0px 0px 8px #888888;
    max-width: 450px;
-   margin: 20px 11% 0px 15%;
+   margin: 20px 8% 0px 11%;
 }
 
 .swiper-wrapper {
@@ -43,6 +43,9 @@ img {
 .details__pet-category {
    font-size: 260%;
    margin-bottom: 50px;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: nowrap;
 }
 
 .details-main {
@@ -52,57 +55,64 @@ img {
 .category {
    color: $secondary-text-color;
    font-weight: bold;
+   margin-right: 2%;
+}
+
+.category-list {
    display: flex;
    flex-direction: row;
+   justify-content: space-around;
+   width: 40%;
 }
 
 .category-name {
+   list-style-type: none;
    color: $main-color;
    font-weight: bold;
    font-style: italic;
 }
 
- .details__adopt-button {
-    cursor: pointer;
-    font-weight: 700;
-    font-family: Helvetica,"sans-serif";
-    transition: all .2s;
-    padding: 10px 20px;
-    border-radius: 100px;
-    background: $main-color;
-    color: white;
-    font-weight: bolder;
-    border: 1px solid transparent;
-    display: flex;
-    align-items: center;
-    font-size: 30px;
-    box-shadow: 0px 0px 8px #888888;
- }
+.details__adopt-button {
+   cursor: pointer;
+   font-weight: 700;
+   font-family: Helvetica, "sans-serif";
+   transition: all 0.2s;
+   padding: 10px 20px;
+   border-radius: 100px;
+   background: $main-color;
+   color: white;
+   font-weight: bolder;
+   border: 1px solid transparent;
+   display: flex;
+   align-items: center;
+   font-size: 30px;
+   box-shadow: 0px 0px 8px #888888;
+}
 
- .link {
-    text-decoration:none;
-    color: #ffffff;
- }
-   
- .details__adopt-button:hover {
-    background: $button-hover-color;
- }
-   
- .details__adopt-button > svg {
-    width: 34px;
-    margin-left: 10px;
-    transition: transform .3s ease-in-out;
- }
-   
+.link {
+   text-decoration: none;
+   color: #ffffff;
+}
+
+.details__adopt-button:hover {
+   background: $button-hover-color;
+}
+
+.details__adopt-button > svg {
+   width: 34px;
+   margin-left: 10px;
+   transition: transform 0.3s ease-in-out;
+}
+
 .details__adopt-button:hover svg {
-    transform: translateX(5px);
- }
-   
- .details__adopt-button:active {
-    transform: scale(0.95);
- }
+   transform: translateX(5px);
+}
 
- .details-description {
+.details__adopt-button:active {
+   transform: scale(0.95);
+}
+
+.details-description {
    align-self: center;
    display: flex;
    flex-direction: column;
@@ -113,21 +123,21 @@ img {
    border: 2px $secondary-text-color solid;
    width: 650px;
    box-shadow: 0px 0px 8px #888888;
- }
- .description-title {
-    font-size: 50px;
-    font-weight: bold;
-    color: $main-color;
-    margin-bottom: 25px;
- }
+}
+.description-title {
+   font-size: 50px;
+   font-weight: bold;
+   color: $main-color;
+   margin-bottom: 25px;
+}
 
- li {
+li {
    margin-bottom: 15px;
    color: $secondary-text-color;
    font-weight: bold;
- }
+}
 
- .component {
-    display: flex;
-    flex-direction: column;
- }
+.component {
+   display: flex;
+   flex-direction: column;
+}
