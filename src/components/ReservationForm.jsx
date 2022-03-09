@@ -17,12 +17,13 @@ export default function App() {
       petHistory:''
     }
   });
+  //const valuesOutOfDatabase = ['petHistory', 'province', 'adoptionMotive',]
   const requiredInputError = 'this is required';
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => console.log(JSON.stringify(data));
   console.log(errors);
 
   return (
-    <form id="form" className="form" onSubmit={handleSubmit(onSubmit)}>
+    <form id="form" className="form" onSubmit={handleSubmit((onSubmit))}>
       <div className="questions">
         <div className="leftside">
           <div className="box">
