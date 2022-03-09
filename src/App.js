@@ -30,7 +30,7 @@ function App() {
         <petsContext.Provider value={{ pets, setPets }}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="pet/:id/details" element={<PetDetails />} />
+            <Route path="pets/:id/details" element={<PetDetails />} />
           </Routes>
         </petsContext.Provider>
         <Footer />
