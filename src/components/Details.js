@@ -59,7 +59,7 @@ export default function Details() {
                         <span className="category">Category:</span> {categories.map((category) => <span className="category-name" key={`${category}`}>{category}</span>)}
                     </div>
                     <button className="details__adopt-button">
-                        <Link to={`pet/${id}/adoption-form`} className='link'>
+                        <Link to={`pet/${id}/rerservation`} className='link'>
                             <span>Adopt</span>
                         </Link>
                         <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
