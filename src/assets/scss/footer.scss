@@ -5,12 +5,12 @@ footer {
     max-width: 100%;
     background-color: #2d2e31;
     color: #ffffff;
-    
     //font-weight: bold;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     padding: 1%;
+    margin-top: 35px;
 
     .footer-title{
         margin-bottom: 10px;
@@ -27,6 +27,7 @@ footer {
         align-items: center;
         margin-top: 45px;
         font-size: $text-size;
+        color: #ffffff;
     }
     
     .routerLink {
