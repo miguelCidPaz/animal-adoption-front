@@ -29,7 +29,6 @@ function App() {
     setAdoptions([...adoptionsResponse]);
     setPets([...petsResponse.data]);
   }, [])
-console.log(adoptions);
 
   return (
     <main>
