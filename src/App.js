@@ -3,7 +3,9 @@ import { useState, createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./assets/styles.scss";
+import Footer from './components/Footer'
 import Home from "./views/Home";
+import PetDetails from "./views/PetDetails";
 import axios from "axios";
 
 const petsContext = createContext({
@@ -40,6 +42,7 @@ function App() {
             </Routes>
           </adoptionsContext.Provider>
         </petsContext.Provider>
+        <Footer />
       </BrowserRouter>
     </main>
   );
