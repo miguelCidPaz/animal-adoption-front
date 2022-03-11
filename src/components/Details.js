@@ -10,14 +10,14 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 import { petsContext } from "../App";
-import useFindCurrentPet from "./hooks/useFindCurrentPet";
+import useHandleCurrentPet from "./hooks/useHandleCurrentPet";
 import axios from "axios";
 
 export default function Details() {
     const { id } = useParams();
     const { pets, setPets } = useContext(petsContext);
     const [currentPet, setCurrentPet] = useState({});
-    const findCurrentPet = useFindCurrentPet();
+    const {getCurrentPetData} = useHandleCurrentPet();
     const categories = [currentPet.species, currentPet.size];
     const missingDataMessage = 'unknown';
     const loadingImgUrl = 'https://cdn.dribbble.com/users/1782673/screenshots/4683964/ezgif.com-video-to-gif__2_.gif';
@@ -28,7 +28,7 @@ export default function Details() {
             const response = await axios.get(`${apiURL}pets/`);
             setPets({ ...response.data });
         }
-        const pet = findCurrentPet(id, pets);
+        const pet = getCurrentPetData(id, pets);
         console.log(pet);
         setCurrentPet({ ...pet });
     }, [pets])

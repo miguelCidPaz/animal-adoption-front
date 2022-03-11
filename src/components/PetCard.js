@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
-import useFindCurrentPet from "./hooks/useFindCurrentPet";
+import useHandleCurrentPet from "./hooks/useHandleCurrentPet";
 import {adoptionsContext}  from "../App";
 
 export default function PetCard({data}) {  
   const { adoptions, setAdoptions } = useContext(adoptionsContext)
   const [currentCard, setCurrentCard] = useState({});
-  const findCurrentPet = useFindCurrentPet();  
-  const currentPet = findCurrentPet(data.id, adoptions)
+  const {getCurrentPetData, getAdoptionStatus} = useHandleCurrentPet();  
+  const currentPet = getAdoptionStatus(data.id, adoptions)  
   const printPet = (adoptions.length > 0 ? currentPet : false )
   console.log(adoptions,"ADOPTIONS");
-  console.log(printPet,"CURRENT");
+  console.log(currentPet,"CURRENT");
   return (
     <div className="petcard-box" >
     <div id="petcard-img_box"> 
