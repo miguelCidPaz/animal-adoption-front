@@ -1,10 +1,18 @@
-export default function useFindCurrentPet() {
+export default function useHandleCurrentPet() {
 
-    const findCurrentPet = (id, rawData) => {
-        if (rawData.length > 0) {
-            const currentPet = rawData.filter((pet) => pet.id === id);
-            return currentPet[0];
+    const getCurrentPetData = (petId, allPets) => {
+        if (allPets.length > 0) {
+            const petData = allPets.filter((pet) => pet.id === petId);
+            return petData[0];
         }
     }
-    return findCurrentPet;
+
+    const getAdoptionStatus = (petId, activeAdoptions) => {
+        if (activeAdoptions > 0) {
+            const petAdoptionStatus = activeAdoptions.filter((adoption) => adoption.idpet === petId);
+            return petAdoptionStatus[0];
+        }
+    }
+
+    return {getCurrentPetData, getAdoptionStatus};
 }
