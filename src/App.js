@@ -27,9 +27,9 @@ function App() {
 
   useEffect(async () => {
     const petsResponse = await axios.get(`${apiURL}pets/`);
+    setPets([...petsResponse.data]);
     const adoptionsResponse = await axios.get(`${apiURL}reservations/`);
     setAdoptions([...adoptionsResponse.data]);
-    setPets([...petsResponse.data]);
   }, [])
 
   return (
@@ -39,6 +39,7 @@ function App() {
           <adoptionsContext.Provider value={{ adoptions, setAdoptions }}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/pets/:id/details" element={<PetDetails />} />
             </Routes>
           </adoptionsContext.Provider>
         </petsContext.Provider>
