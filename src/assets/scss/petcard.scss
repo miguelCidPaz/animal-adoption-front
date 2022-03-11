@@ -48,9 +48,13 @@ $color-turquoise: #34b3d3;
 }
 .petcard-options p{
   color: #FFF;
+  font-weight: bolder;
+  font-size: 2em;
 }
 .petcard-options button{
   width: 100%;
+  font-weight: bold;
+  font-size: 1.2em;
   color: $color-turquoise;
 }
 

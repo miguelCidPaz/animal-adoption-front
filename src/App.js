@@ -17,17 +17,17 @@ export { petsContext };
 
 function App() {
   const [pets, setPets] = useState({});
-  const apiURL = process.env.REACT_APP_API_URL;
+  const apiURL = process.env.REACT_APP_API_URL;  
   useEffect(async () => {
     const response = await axios.get(`${apiURL}pets`);
-    setPets([...response.data]);
+    setPets([...response.data]);   
   }, [])
 
 
   return (
-    <main>
+    <main>      
       <BrowserRouter>
-        <petsContext.Provider value={{ pets, setPets }}>
+        <petsContext.Provider value={{ pets, setPets }}>          
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="pets/:id/details" element={<PetDetails />} />
