@@ -9,11 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-<<<<<<< HEAD
-import { petsContext } from "../App";
-=======
 import { petsContext, adoptionsContext } from "../App";
->>>>>>> dff42044050231bf8089b69032af8bcc8dcced83
 import useHandleCurrentPet from "./hooks/useHandleCurrentPet";
 import axios from "axios";
 
