@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useState, useContext, createContext } from "react";
+import { useState, createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./assets/styles.scss";
@@ -26,7 +26,7 @@ function App() {
   useEffect(async () => {
     const petsResponse = await axios.get(`${apiURL}pets/`);
     const adoptionsResponse = await axios.get(`${apiURL}reservations/`);
-    setAdoptions([...adoptionsResponse]);
+    setAdoptions([...adoptionsResponse.data]);
     setPets([...petsResponse.data]);
   }, [])
 
