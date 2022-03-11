@@ -2,6 +2,7 @@
 @import "./scss/globals.scss";
 @import "./scss/details.scss";
 @import "./scss/footer.scss";
+@import "./scss/Navbar.scss";
 
 /*
 Cuando vayais a hacer el estilo de un componente solo teneis que enlazarlo aqui así y te olvidas:
@@ -9,4 +10,3 @@ Cuando vayais a hacer el estilo de un componente solo teneis que enlazarlo aqui 
 @import "./components/Main/main.scss";
 
 */
-@import "../components/NavBar/NavBar.scss";

@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { useState, createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import axios from "axios";
+
 import "./assets/styles.scss";
 import Footer from './components/Footer'
 import Home from "./views/Home";
 import PetDetails from "./views/PetDetails";
-import axios from "axios";
+import NavBar from "./components/NavBar";
 
 const petsContext = createContext({
   pets: [],
@@ -37,6 +39,7 @@ function App() {
       <BrowserRouter>
         <petsContext.Provider value={{ pets, setPets }}>
           <adoptionsContext.Provider value={{ adoptions, setAdoptions }}>
+            <NavBar />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/pets/:id/details" element={<PetDetails />} />

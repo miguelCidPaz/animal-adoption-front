@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import TuneIcon from "@material-ui/icons/Tune";
 import SearchIcon from "@material-ui/icons/Search";
+
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -52,19 +53,18 @@ export default function SearchAppBar() {
   const [searchInput, setSearchInput] = useState();
   
   async function searchPetByName(event) {
-    if (event.keycode === 13) {
-      if (searchInput.lenght > 0) {
+    if (event.keyCode === 13) {
+      if (searchInput) {
         const pet = await axios.get(`${process.env.REACT_APP_API_URL}pets?name=${searchInput}`);
-        console.log(pet.data.id)
-        //navigate(`/pets/${pet.data.id}/details`)
+        navigate(`/pets/${pet.data[0].id}/details`);
       }
     }
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar color="primary" position="static">
-        <Toolbar className="nav">
+    <Box sx={{ flexGrow: 1, backgroundColor: '#34b3d3'}}>
+      <AppBar color="primary" position="static" sx={{ backgroundColor: '#34b3d3'}}>
+        <Toolbar className="nav" sx={{ backgroundColor: '#34b3d3'}}>
           {/* filter menu*/}
           {
             ((window.location.pathname === '/') && <IconButton
