@@ -7,6 +7,7 @@ import axios from "axios";
 import "./assets/styles.scss";
 import Footer from './components/Footer'
 import Home from "./views/Home";
+import Reservation from "./views/Reservation";
 import PetDetails from "./views/PetDetails";
 import NavBar from "./components/NavBar";
 
@@ -42,6 +43,7 @@ function App() {
             <NavBar />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/pets/:id/reservation" element={<Reservation />} />
               <Route path="/pets/:id/details" element={<PetDetails />} />
             </Routes>
           </adoptionsContext.Provider>
