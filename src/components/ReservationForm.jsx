@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
-import axios from "axios";
+//import axios from "axios";
 
 export default function ReservationForm() {
   const {
@@ -22,11 +22,9 @@ export default function ReservationForm() {
   const navigate = useNavigate();
 
   async function submitReservation(userInput) {
-    console.log(userInput);
     const apiURL = process.env.REACT_APP_API_URL;
     const stringifiedData = JSON.stringify(userInput);
-    console.log(stringifiedData);
-    const response = await axios.post(`${apiURL}reservations/${id}`, {stringifiedData});
+    //const response = await axios.post(`${apiURL}reservations/${id}`, {stringifiedData});
     navigate(`/pet/${id}/reservations/completed`);
   }
 

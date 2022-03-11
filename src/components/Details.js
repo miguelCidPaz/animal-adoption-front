@@ -29,7 +29,6 @@ export default function Details() {
             setPets({ ...response.data });
         }
         const pet = findCurrentPet(id, pets);
-        console.log(pet);
         setCurrentPet({ ...pet });
     }, [pets])
     
