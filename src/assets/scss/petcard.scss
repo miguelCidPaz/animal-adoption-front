@@ -1,0 +1,68 @@
+$color-turquoise: #34b3d3;
+
+.petcard-box {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  flex-direction: column;
+  background-color: $color-turquoise;
+  padding: 10px;
+  height: 300px;
+  width: 230px;
+  margin: 10px;
+}
+
+#petcard-img_box {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#petcard-img_box img {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+#petcard-img_box img.petcard-img_top:hover {
+  opacity: 0;
+}
+.petcard-options {
+  display: flex;
+  width: 200px;
+  height: 70px;
+  align-items: center;
+  justify-content: space-around;  
+}
+.petcard-options_buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; 
+  height: 100%;    
+}
+
+.petcard-options p{
+  color: #FFF;
+  font-weight: bolder;
+  font-size: 2em;
+}
+.petcard-options button{
+  width: 100%;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: $color-turquoise;
+}
+.petcard-options_buttons-disabled{
+  width: 100%;
+  font-weight: bold;
+  font-size: 1.2em;  
+  color: #ff0000 !important;
+}
+
+
