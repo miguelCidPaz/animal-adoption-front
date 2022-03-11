@@ -40,8 +40,8 @@ function App() {
           <adoptionsContext.Provider value={{ adoptions, setAdoptions }}>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/pet/:id/reservation" element={<Reservation />} />
-              <Route path="/pet/:id/details" element={<PetDetails />} />
+              <Route path="/pets/:id/reservation" element={<Reservation />} />
+              <Route path="/pets/:id/details" element={<PetDetails />} />
             </Routes>
           </adoptionsContext.Provider>
         </petsContext.Provider>

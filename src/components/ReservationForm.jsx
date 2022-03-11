@@ -2,7 +2,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function App() {
+import axios from "axios";
+
+export default function ReservationForm() {
   const {
     register,
     handleSubmit,
@@ -13,9 +15,6 @@ export default function App() {
       personalID: '',
       age:'18',
       address:'',
-      province:'',
-      adoptionMotive: '',
-      petHistory:''
     }
   });
   const requiredInputErrorMessage = 'this is required';
@@ -26,8 +25,9 @@ export default function App() {
     console.log(userInput);
     const apiURL = process.env.REACT_APP_API_URL;
     const stringifiedData = JSON.stringify(userInput);
-    //const response = await axios.post(`${apiURL}reservation/`, stringifiedData);
-    navigate(`pet/${id}/reservation/completed`);
+    console.log(stringifiedData);
+    const response = await axios.post(`${apiURL}reservations/${id}`, {stringifiedData});
+    navigate(`/pet/${id}/reservations/completed`);
   }
 
   return (
@@ -35,7 +35,7 @@ export default function App() {
       <div className="questions">
         <div className="leftside">
           <div className="box">
-            <label for="FullName">
+            <label htmlFor="FullName">
               <b>
                 Full Name of the adopter<span className="required">*</span>
               </b>
@@ -55,7 +55,7 @@ export default function App() {
           <br />
 
           <div className="box">
-            <label for="DNI">
+            <label htmlFor="DNI">
               <b>
                 DNI<span className="required">*</span>
               </b>
@@ -73,7 +73,7 @@ export default function App() {
           <br />
           <br />
           <div className="box">
-            <label for="Age">
+            <label htmlFor="Age">
               <b>Adopter's age </b>
               <span className="required">*</span>
               <br />
@@ -92,7 +92,7 @@ export default function App() {
           </div>
 
           <div className="box">
-            <label for="Residence">
+            <label htmlFor="Residence">
               <b>Place of residence</b>
               <span className="required">*</span>
               <br />
@@ -111,7 +111,7 @@ export default function App() {
         </div>
         <div className="rightside">
           <div className="box">
-            <label for="Province">
+            <label htmlFor="Province">
               <b>Province</b>
               <br />
             </label>
@@ -126,7 +126,7 @@ export default function App() {
           </div>
 
           <div className="box">
-            <label for="Question1">
+            <label htmlFor="Question1">
               <b>
                 Why do you want to adopt a pet? Who lives together in the family
                 home?
@@ -146,7 +146,7 @@ export default function App() {
           <br />
 
           <div className="box">
-            <label for="Question2">
+            <label htmlFor="Question2">
               <b>
                 Have you had animals before, do you still have them, and if not,
                 why not, and do you have experience with animals?
@@ -167,8 +167,8 @@ export default function App() {
       <br />
       <br />
       <button type="submit" className="submitButton">
-        <div class="svg-wrapper-1">
-          <div class="svg-wrapper">
+        <div className="svg-wrapper-1">
+          <div className="svg-wrapper">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
