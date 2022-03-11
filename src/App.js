@@ -18,7 +18,7 @@ const adoptionsContext = createContext({
   setAdoptions: () => { },
 });
 
-export { petsContext };
+export { petsContext, adoptionsContext };
 
 function App() {
   const [pets, setPets] = useState({});
