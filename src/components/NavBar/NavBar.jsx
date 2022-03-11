@@ -1,4 +1,9 @@
 import * as React from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
+
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -8,7 +13,6 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import TuneIcon from "@material-ui/icons/Tune";
 import SearchIcon from "@material-ui/icons/Search";
-
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -44,41 +48,63 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+  const navigate = useNavigate();
+  const [searchInput, setSearchInput] = useState();
+  
+  async function searchPetByName(event) {
+    if (event.keycode === 13) {
+      if (searchInput.lenght > 0) {
+        const pet = await axios.get(`${process.env.REACT_APP_API_URL}pets?name=${searchInput}`);
+        console.log(pet.data.id)
+        //navigate(`/pets/${pet.data.id}/details`)
+      }
+    }
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar color="primary" position="static">
         <Toolbar className="nav">
-          {/* Menú para filtrar*/}
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <TuneIcon />
-          </IconButton>
-          {/* Nombre-Logo de la página */}
+          {/* filter menu*/}
+          {
+            ((window.location.pathname === '/') && <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{ mr: 2 }}
+            >
+              <TuneIcon />
+            </IconButton>
+            )
+          }
+          {/* web name-logo */}
+
           <Typography
             className="logo"
             variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            onClick={() => navigate('/')}
           >
             Happy Adoption
           </Typography>
-
-          {/* Botón de búsqueda*/}
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          {/* search button*/}
+          {
+            ((window.location.pathname === '/') && <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                onChange={(event) => setSearchInput(event.target.value)}
+                onKeyDown={(event) => searchPetByName(event)}
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+              />
+            </Search>
+            )
+          }
         </Toolbar>
       </AppBar>
     </Box>
