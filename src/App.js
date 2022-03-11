@@ -27,9 +27,9 @@ function App() {
 
   useEffect(async () => {
     const petsResponse = await axios.get(`${apiURL}pets/`);
+    setPets([...petsResponse.data]);
     const adoptionsResponse = await axios.get(`${apiURL}reservations/`);
     setAdoptions([...adoptionsResponse.data]);
-    setPets([...petsResponse.data]);
   }, [])
 
   return (
