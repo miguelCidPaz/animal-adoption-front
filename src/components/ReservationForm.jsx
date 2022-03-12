@@ -23,7 +23,6 @@ export default function ReservationForm() {
 
   async function submitReservation(userInput) {
     const apiURL = process.env.REACT_APP_API_URL;
-    const stringifiedData = JSON.stringify(userInput);
     const response = await axios.post(`${apiURL}reservations/${id}`, userInput);
     navigate(`/pets/${id}/reservation-completed`);
   }
