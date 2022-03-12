@@ -26,7 +26,7 @@ export { petsContext, adoptionsContext };
 function App() {
   const [pets, setPets] = useState({});
   const [adoptions, setAdoptions] = useState({});
-  const apiURL = process.env.REACT_APP_API_URL;
+    const apiURL = process.env.REACT_APP_API_URL;   
 
   useEffect(async () => {
     const petsResponse = await axios.get(`${apiURL}pets/`);
@@ -36,7 +36,7 @@ function App() {
   }, [])
 
   return (
-    <main>
+    <main>      
       <BrowserRouter>
         <petsContext.Provider value={{ pets, setPets }}>
           <adoptionsContext.Provider value={{ adoptions, setAdoptions }}>
