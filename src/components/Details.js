@@ -15,7 +15,6 @@ import axios from "axios";
 
 export default function Details() {
     const { id } = useParams();
-    console.log(id);
     const { pets, setPets } = useContext(petsContext);
     const { adoptions, setAdoptions } = useContext(adoptionsContext);
     const [currentPet, setCurrentPet] = useState({});
@@ -43,11 +42,7 @@ export default function Details() {
         }
         const adoptionStatus = getAdoptionStatus(id, adoptions);
         setCurrentPetStatus(adoptionStatus);
-        console.log(adoptionStatus);
     }, [adoptions])
-
-    console.log(adoptions);
-    console.log(currentPetStatus);
 
     return (
         <div className="component">
@@ -98,7 +93,6 @@ export default function Details() {
                     <li>Gender: {currentPet.gender || missingDataMessage} </li>
                     <li>Size: {currentPet.size || missingDataMessage}</li>
                     <li>Weight: {`${currentPet.weightKg}kg` || missingDataMessage} </li>
-                    <li>Recued: {currentPet.rescuedAt || missingDataMessage}</li>
                 </ul>
             </section>
         </div>

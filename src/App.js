@@ -10,6 +10,7 @@ import Home from "./views/Home";
 import Reservation from "./views/Reservation";
 import PetDetails from "./views/PetDetails";
 import NavBar from "./components/NavBar";
+import Completed from "./views/Completed";
 
 const petsContext = createContext({
   pets: [],
@@ -44,6 +45,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/pets/:id/reservation" element={<Reservation />} />
+              <Route path="/pets/:id/reservation-completed" element={<Completed />} />
               <Route path="/pets/:id/details" element={<PetDetails />} />
             </Routes>
           </adoptionsContext.Provider>
