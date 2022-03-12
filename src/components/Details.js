@@ -76,7 +76,7 @@ export default function Details() {
                     <button className="details__adopt-button">
                         {
                             (currentPetStatus) ? <Link to={`/`} className='link'><span>See more pets</span></Link> :
-                                <Link to={`/pets/${id}/rerservation`} className='link'>
+                                <Link to={`/pets/${id}/reservation`} className='link'>
                                     <span>Adopt</span>
                                 </Link>
                         }
