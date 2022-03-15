@@ -7,7 +7,6 @@ function MainView() {
   
   return (
     <div >
-      <p>Estas en la home</p>  
       <div className="home">     
       {pets.length > 0 && pets.map(pet => <PetCard data = {pet} key = {pet.id} />) }       
       </div>

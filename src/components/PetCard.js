@@ -15,8 +15,8 @@ export default function PetCard({ data }) {
         <div className="petcard-options">
           <p>{data.name}</p>
           <div className="petcard-options_buttons">
-            <Link to={`/api/pet/${data.id}/reservation`}><button className="petcard-options_buttons-disabled" disabled>reserved</button></Link>
-            <Link to={`/api/pets/${data.id}/details`}><button>details</button></Link>
+            <Link to={`/pets/${data.id}/reservation`}><button className="petcard-options_buttons-disabled" disabled>reserved</button></Link>
+            <Link to={`/pets/${data.id}/details`}><button>details</button></Link>
           </div>
         </div>
       );
@@ -25,8 +25,8 @@ export default function PetCard({ data }) {
         <div className="petcard-options">
           <p>{data.name}</p>
           <div className="petcard-options_buttons">
-            <Link to={`/api/pet/${data.id}/reservation`}><button>adopt</button></Link>
-            <Link to={`/api/pets/${data.id}/details`}><button>details</button></Link>
+            <Link to={`/pets/${data.id}/reservation`}><button>adopt</button></Link>
+            <Link to={`/pets/${data.id}/details`}><button>details</button></Link>
           </div>
         </div>
       );

@@ -8,9 +8,8 @@ export default function useHandleCurrentPet() {
     }
 
     const getAdoptionStatus = (petId, activeAdoptions) => {
-        ;        
         if (activeAdoptions.length > 0) {
-            const petAdoptionStatus = activeAdoptions.filter((adoption) => adoption.idPet === petId);           
+            const petAdoptionStatus = activeAdoptions.filter((adoption) => adoption.idPet === petId);
             return petAdoptionStatus[0];
         }
     }
