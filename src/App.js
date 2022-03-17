@@ -52,7 +52,6 @@ function App() {
             <NavBar />
             <Routes>
               <Route path="/" element={<Home />} />
-              /**ewe */
               <Route path="/pets/:id/reservation" element={<Reservation setAdoptions={setAdoptions} adoptions={adoptions} />} />
               <Route path="/pets/:id/reservation-completed" element={<Completed />} />
               <Route path="/pets/:id/details" element={<PetDetails />} />
