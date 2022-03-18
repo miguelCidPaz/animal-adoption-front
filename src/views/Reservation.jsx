@@ -1,10 +1,10 @@
 import React from "react";
 import ReservationForm from "../components/ReservationForm";
 
-function Reservation() {
+function Reservation(props) {
   return (
     <div>
-      <ReservationForm />
+      <ReservationForm setAdoptions={props.setAdoptions} adoptions={props.adoptions} />
     </div>
   );
 }
