@@ -1,6 +1,7 @@
 import * as React from "react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import { petsContext, adoptionsContext } from "../App";
 
 import axios from "axios";
 
@@ -66,6 +67,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function SearchAppBar() {
   const theme = useTheme();
   const navigate = useNavigate();
+  const { pets, setPets } = useContext(petsContext);
+  //const [pets, setPets] = useState({});
   const [searchInput, setSearchInput] = useState();
   const [open, setOpen] = React.useState(false);
 
@@ -79,9 +82,17 @@ export default function SearchAppBar() {
 
   async function searchPetByName(event) {
     if (event.keyCode === 13) {
+
       if (searchInput) {
         const pet = await axios.get(`${process.env.REACT_APP_API_URL}pets?name=${searchInput}`);
-        navigate(`/pets/${pet.data[0].id}/details`);
+
+        if (pet.data.length < 2) {
+          navigate(`/pets/${pet.data[0].id}/details`);
+        } else {
+          setPets(pet.data);
+          navigate(`/`);
+        }
+        
       }
     }
   }

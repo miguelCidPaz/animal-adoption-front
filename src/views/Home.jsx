@@ -1,9 +1,10 @@
 import React from "react";
-import { useState, useContext, useEffect } from "react";
+import { useContext} from "react";
 import { petsContext } from "../App";
 import PetCard from "../components/PetCard";
+
 function MainView() {
-  const { pets, setPets } = useContext(petsContext)
+  const { pets } = useContext(petsContext)
 
   return (
     <div >
