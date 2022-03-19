@@ -25,21 +25,21 @@ export default function Details() {
     const loadingImgUrl = 'https://cdn.dribbble.com/users/1782673/screenshots/4683964/ezgif.com-video-to-gif__2_.gif';
 
     useEffect(async () => {
-        if (pets.length < 1) {
+       /*  if (pets.length < 1) {
             const apiURL = process.env.REACT_APP_API_URL;
             const response = await axios.get(`${apiURL}pets/`);
             setPets({ ...response.data });
-        }
+        } */
         const pet = getCurrentPetData(id, pets);
         setCurrentPet({ ...pet });
     }, [pets])
 
     useEffect(async () => {
-        if (adoptions.length < 1) {
+        /* if (adoptions.length < 1) {
             const apiURL = process.env.REACT_APP_API_URL;
             const response = await axios.get(`${apiURL}reservations/`);
             setAdoptions({ ...response.data });
-        }
+        } */
         const adoptionStatus = getAdoptionStatus(id, adoptions);
         setCurrentPetStatus(adoptionStatus);
     }, [adoptions])
