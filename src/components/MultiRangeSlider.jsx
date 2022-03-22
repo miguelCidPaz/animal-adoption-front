@@ -4,7 +4,6 @@ const MultiRangeSlider = (props) => {
 
     const handleChange = (even, newValue) => {
         props.setValue(newValue)
-        console.log(props.value)
     }
 
     return (

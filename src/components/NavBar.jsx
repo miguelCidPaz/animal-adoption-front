@@ -114,7 +114,6 @@ export default function SearchAppBar() {
     const test = Object.entries(resultForm).filter(e => e[1] === true);
     const weight = ["weight", values];
     test.push(weight);
-    console.log(test)
 
     await axios({
       method: 'post',
