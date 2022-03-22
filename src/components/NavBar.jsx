@@ -1,6 +1,7 @@
 import * as React from "react";
-import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import { petsContext, adoptionsContext } from "../App";
 import { useForm } from 'react-hook-form';
 
 import axios from "axios";
@@ -70,10 +71,11 @@ export default function SearchAppBar() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const theme = useTheme();
   const navigate = useNavigate();
+  const { pets, setPets } = useContext(petsContext);
+  //const [pets, setPets] = useState({});
   const [searchInput, setSearchInput] = useState();
   const [values, setValues] = useState([20, 80]);
   const [open, setOpen] = React.useState(false);
-  const { pets, setPets } = useContext(petsContext);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -85,9 +87,18 @@ export default function SearchAppBar() {
 
   async function searchPetByName(event) {
     if (event.keyCode === 13) {
+
       if (searchInput) {
         const pet = await axios.get(`${process.env.REACT_APP_API_URL}pets?name=${searchInput}`);
-        navigate(`/pets/${pet.data[0].id}/details`);
+
+        if (pet.data.length < 2) {
+          navigate(`/pets/${pet.data[0].id}/details`);
+        } else {
+          /* 🖕 it already works suckers 🖕 */
+          setPets(pet.data);
+          navigate(`/`);
+        }
+
       }
     }
   }
@@ -220,7 +231,13 @@ export default function SearchAppBar() {
               noWrap
               component="div"
               sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-              onClick={() => navigate('/')}
+              onClick={async () => {
+                /* 🖕 it already works suckers 🖕 */
+                const apiURL = process.env.REACT_APP_API_URL;
+                const response = await axios.get(`${apiURL}pets/`);
+                setPets(response.data);
+                navigate('/')
+              }}
             >
               Happy Adoption
             </Typography>
