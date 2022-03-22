@@ -119,7 +119,7 @@ export default function SearchAppBar() {
       method: 'post',
       url: `${process.env.REACT_APP_API_URL}pets/filter`,
       headers: {
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': process.env.REACT_APP_API_URL,
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
