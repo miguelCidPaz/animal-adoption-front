@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
-import { petsContext, adoptionsContext } from "../App";
 import { useForm } from 'react-hook-form';
 
 import axios from "axios";
