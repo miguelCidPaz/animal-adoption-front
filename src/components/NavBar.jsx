@@ -100,25 +100,26 @@ export default function SearchAppBar() {
 
   }
 
-  const onSubmit = (resultForm) => {
+  const onSubmit = async (resultForm) => {
     const test = Object.entries(resultForm).filter(e => e[1] === true);
     const weight = ["weight", values];
     test.push(weight);
     console.log(test)
-    console.log(pets)
 
-    /* await axios({
+    await axios({
       method: 'post',
-      url:'',
-      headers:{
+      url: `${process.env.REACT_APP_API_URL}pets/filter`,
+      headers: {
         'Access-Control-Allow-Origin': '*',
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       data: {
-        newConditions: newConditions
+        newConditions: test
       }
-    })-- */
+    }).then((res) => {
+      setPets([...res.data])
+    })
   }
 
   const drawerWidth = 240;
@@ -174,16 +175,16 @@ export default function SearchAppBar() {
                   })} /><label> Small</label>
               <br />
               <input type="checkbox"  {
-                ...register("Average",
+                ...register("Medium",
                   {
                     value: true
-                  })} /><label> Average</label>
+                  })} /><label> Medium</label>
               <br />
               <input type="checkbox"  {
-                ...register("Big",
+                ...register("Large",
                   {
                     value: true
-                  })} /><label> Big</label>
+                  })} /><label> Large</label>
               <br />
               <MultiRangeSlider value={values} setValue={setValues} />
               <input type="submit" method="get" value="Filter" />
