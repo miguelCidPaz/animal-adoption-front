@@ -1,9 +1,10 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
-import { petsContext, adoptionsContext } from "../App";
+import { useForm } from 'react-hook-form';
 
 import axios from "axios";
+import { petsContext } from "../App";
 
 import { styled, useTheme } from "@mui/material/styles";
 import { alpha } from "@mui/material/styles";
@@ -20,6 +21,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import Drawer from "@mui/material/Drawer";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import MultiRangeSlider from "./MultiRangeSlider";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -65,11 +67,13 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const theme = useTheme();
   const navigate = useNavigate();
   const { pets, setPets } = useContext(petsContext);
   //const [pets, setPets] = useState({});
   const [searchInput, setSearchInput] = useState();
+  const [values, setValues] = useState([20, 80]);
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -93,10 +97,40 @@ export default function SearchAppBar() {
           setPets(pet.data);
           navigate(`/`);
         }
-        
+
       }
     }
   }
+
+  /**
+   * Recibimos las condiciones, trabajamos sobre memoryPets y devolvemos un arr con las pets filtradas
+   * @param {Conditions} arr 
+   */
+  const filterPets = (arr) => {
+
+  }
+
+  const onSubmit = async (resultForm) => {
+    const test = Object.entries(resultForm).filter(e => e[1] === true);
+    const weight = ["weight", values];
+    test.push(weight);
+
+    await axios({
+      method: 'post',
+      url: `${process.env.REACT_APP_API_URL}pets/filter`,
+      headers: {
+        'Access-Control-Allow-Origin': process.env.REACT_APP_API_URL,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: {
+        newConditions: test
+      }
+    }).then((res) => {
+      setPets([...res.data])
+    })
+  }
+
   const drawerWidth = 240;
 
   return (
@@ -125,17 +159,47 @@ export default function SearchAppBar() {
         </DrawerHeader>
         <Divider />
         <List>
-          <div>
-            <div>Species</div>
-            <input type="checkbox" value="dog" /><label> Dog</label><br />
-            <input type="checkbox" value="cat" /><label> Cat</label><br />
-            <br />
-            <div>Size</div>
-            <input type="checkbox" value="1" /><label> Small</label><br />
-            <input type="checkbox" value="2" /><label> Average</label><br />
-            <input type="checkbox" value="3" /><label> Big</label><br />
-            <input type="submit" method="get" value="Filter" />
-          </div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="space-out">
+              <div>Species</div>
+              <input type="checkbox"  {
+                ...register("Dog",
+                  {
+                    value: true
+                  })} /><label> Dog</label>
+              <br />
+              <input type="checkbox"  {
+                ...register("Cat",
+                  {
+                    value: true
+                  })} /><label> Cat</label>
+              <br />
+
+              <br />
+              <div>Size</div>
+              <input type="checkbox"  {
+                ...register("Small",
+                  {
+                    value: true
+                  })} /><label> Small</label>
+              <br />
+              <input type="checkbox"  {
+                ...register("Medium",
+                  {
+                    value: true
+                  })} /><label> Medium</label>
+              <br />
+              <input type="checkbox"  {
+                ...register("Large",
+                  {
+                    value: true
+                  })} /><label> Large</label>
+              <br />
+              <MultiRangeSlider value={values} setValue={setValues} />
+              <input type="submit" method="get" value="Filter" />
+            </div>
+
+          </form>
         </List>
       </Drawer>
 
@@ -170,7 +234,8 @@ export default function SearchAppBar() {
                 const apiURL = process.env.REACT_APP_API_URL;
                 const response = await axios.get(`${apiURL}pets/`);
                 setPets(response.data);
-                navigate('/')}}
+                navigate('/')
+              }}
             >
               Happy Adoption
             </Typography>
