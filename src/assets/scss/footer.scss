@@ -12,7 +12,7 @@ footer {
     padding: 1%;
     margin-top: 35px;
 
-    .footer-title{
+    .footer-title {
         margin-bottom: 10px;
         margin-top: 15px;
         font-size: $title-size;
@@ -29,7 +29,7 @@ footer {
         font-size: $text-size;
         color: #ffffff;
     }
-    
+
     .routerLink {
         color: inherit;
         font-size: $text-size;
@@ -37,5 +37,22 @@ footer {
 
     .routerLinkBox {
         margin-top: 58px;
+    }
+
+    @media (max-width: 780px) {
+        flex-direction: column;
+
+        .footer-maps {
+            margin: auto;
+            margin-bottom: 20px;
+        }
+
+        .routerLinkBox {
+            text-align: center;
+        }
+
+        ul {
+            font-size: 15px;
+        }
     }
 }
