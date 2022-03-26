@@ -9,6 +9,7 @@ const MultiRangeSlider = (props) => {
     return (
         <Box>
             <Slider
+                className="multirange-slider"
                 getAriaLabel={() => 'height range'}
                 value={props.value}
                 onChange={handleChange}
