@@ -160,41 +160,54 @@ export default function SearchAppBar() {
         <Divider />
         <List>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="space-out">
-              <div>Species</div>
-              <input type="checkbox"  {
-                ...register("Dog",
-                  {
-                    value: true
-                  })} /><label> Dog</label>
-              <br />
-              <input type="checkbox"  {
-                ...register("Cat",
-                  {
-                    value: true
-                  })} /><label> Cat</label>
-              <br />
 
-              <br />
-              <div>Size</div>
-              <input type="checkbox"  {
-                ...register("Small",
-                  {
-                    value: true
-                  })} /><label> Small</label>
-              <br />
-              <input type="checkbox"  {
-                ...register("Medium",
-                  {
-                    value: true
-                  })} /><label> Medium</label>
-              <br />
-              <input type="checkbox"  {
-                ...register("Large",
-                  {
-                    value: true
-                  })} /><label> Large</label>
-              <br />
+            <div className="space-out">
+
+              <p>Species</p>
+
+              <div className="filter-slot">
+                <input className="slider" type="checkbox"  {
+                  ...register("Dog",
+                    {
+                      value: true
+                    })} /><label> Dog</label>
+              </div>
+
+              <div className="filter-slot">
+                <input className="slider" type="checkbox"  {
+                  ...register("Cat",
+                    {
+                      value: true
+                    })} /><label> Cat</label>
+              </div>
+
+              <p>Size</p>
+
+              <div className="filter-slot">
+                <input className="slider" type="checkbox"  {
+                  ...register("Small",
+                    {
+                      value: true
+                    })} /><label> Small</label>
+              </div>
+
+              <div className="filter-slot">
+                <input className="slider" type="checkbox"  {
+                  ...register("Medium",
+                    {
+                      value: true
+                    })} /><label> Medium</label>
+              </div>
+
+              <div className="filter-slot">
+                <input className="slider" type="checkbox"  {
+                  ...register("Large",
+                    {
+                      value: true
+                    })} /><label> Large</label>
+              </div>
+
+              <p className="filter-title">Weight</p>
               <MultiRangeSlider value={values} setValue={setValues} />
               <input type="submit" method="get" value="Filter" />
             </div>
@@ -228,7 +241,7 @@ export default function SearchAppBar() {
               variant="h6"
               noWrap
               component="div"
-              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+              sx={{ flexGrow: 1, display: { xs: "block", sm: "block" } }}
               onClick={async () => {
                 /* 🖕 it already works suckers 🖕 */
                 const apiURL = process.env.REACT_APP_API_URL;
