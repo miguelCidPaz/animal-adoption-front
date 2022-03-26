@@ -166,50 +166,50 @@ export default function SearchAppBar() {
               <p>Species</p>
 
               <div className="filter-slot">
-                <input className="slider" type="checkbox"  {
+                <input id="checkbox1" className="slider" type="checkbox"  {
                   ...register("Dog",
                     {
                       value: true
-                    })} /><label> Dog</label>
+                    })} /><label for="checkbox1"> Dog</label>
               </div>
 
               <div className="filter-slot">
-                <input className="slider" type="checkbox"  {
+                <input id="checkbox2" className="slider" type="checkbox"  {
                   ...register("Cat",
                     {
                       value: true
-                    })} /><label> Cat</label>
+                    })} /><label for="checkbox2"> Cat</label>
               </div>
 
               <p>Size</p>
 
               <div className="filter-slot">
-                <input className="slider" type="checkbox"  {
+                <input id="checkbox3" className="slider" type="checkbox"  {
                   ...register("Small",
                     {
                       value: true
-                    })} /><label> Small</label>
+                    })} /><label for="checkbox3"> Small</label>
               </div>
 
               <div className="filter-slot">
-                <input className="slider" type="checkbox"  {
+                <input id="checkbox4" className="slider" type="checkbox"  {
                   ...register("Medium",
                     {
                       value: true
-                    })} /><label> Medium</label>
+                    })} /><label for="checkbox4"> Medium</label>
               </div>
 
               <div className="filter-slot">
-                <input className="slider" type="checkbox"  {
+                <input id="checkbox5" className="slider" type="checkbox"  {
                   ...register("Large",
                     {
                       value: true
-                    })} /><label> Large</label>
+                    })} /><label for="checkbox5"> Large</label>
               </div>
 
               <p className="filter-title">Weight</p>
               <MultiRangeSlider value={values} setValue={setValues} />
-              <input type="submit" method="get" value="Filter" />
+              <input className="submit-button" type="submit" method="get" value="Filter" />
             </div>
 
           </form>
