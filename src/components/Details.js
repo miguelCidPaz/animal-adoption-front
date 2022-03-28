@@ -56,7 +56,7 @@ export default function Details() {
                     scrollbar={{ draggable: true }}>
                     {
                         ((Object.keys(currentPet).length > 0) && (currentPet.images.length > 0)) ? currentPet.images.map((image) => (
-                            <SwiperSlide className="swiper-slide" key={`imagekey${image}`}>
+                            <SwiperSlide id="main-slide" className="swiper-slide" key={`imagekey${image}`}>
                                 <img key={image} src={image} />
                             </SwiperSlide>
                         )) : <img key={loadingImgUrl} src={loadingImgUrl} />

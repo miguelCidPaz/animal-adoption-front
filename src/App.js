@@ -55,6 +55,7 @@ function App() {
               <Route path="/pets/:id/reservation" element={<Reservation setAdoptions={setAdoptions} adoptions={adoptions} />} />
               <Route path="/pets/:id/reservation-completed" element={<Completed />} />
               <Route path="/pets/:id/details" element={<PetDetails />} />
+              <Route path="*" element={<Home />} />
             </Routes>
           </adoptionsContext.Provider>
         </petsContext.Provider>
