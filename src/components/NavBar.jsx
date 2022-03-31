@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import { useForm } from 'react-hook-form';
 
@@ -100,14 +100,6 @@ export default function SearchAppBar() {
 
       }
     }
-  }
-
-  /**
-   * Recibimos las condiciones, trabajamos sobre memoryPets y devolvemos un arr con las pets filtradas
-   * @param {Conditions} arr 
-   */
-  const filterPets = (arr) => {
-
   }
 
   const onSubmit = async (resultForm) => {
@@ -252,6 +244,9 @@ export default function SearchAppBar() {
             >
               Happy Adoption
             </Typography>
+
+            {window.location.pathname === '/' ? <Link to={'/register-pet'}>Register Pet</Link> : null}
+
             {/* search button*/}
             {
               ((window.location.pathname === '/') && <Search>

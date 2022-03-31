@@ -1,0 +1,61 @@
+.register--main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        width: 30%;
+        margin: auto;
+
+        @media (max-width: 1110px) {
+            width: 90%;
+        }
+    }
+}
+
+.register--title {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.register--pet,
+.register--contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+
+    label {
+        font-size: 25px;
+        font-weight: bolder;
+        margin-top: 10px;
+    }
+}
+
+.register--row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    padding: 5%;
+    text-align: center;
+    align-items: center;
+
+    select {
+        width: 100%;
+    }
+}
+
+.register--input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 20px;
+}
