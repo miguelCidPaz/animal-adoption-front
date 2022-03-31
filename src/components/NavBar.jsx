@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { useForm } from 'react-hook-form';
 
 import axios from "axios";
@@ -107,21 +107,10 @@ export default function SearchAppBar() {
     const weight = ["weight", values];
     test.push(weight);
 
-    await axios.post(`${process.env.REACT_APP_API_URL}pets/filter`, 
-      { newConditions: test 
-      /* method: 'post',
-      url: `${process.env.REACT_APP_API_URL}pets/filter`,
-      headers: {
-        'Access-Control-Allow-Origin': process.env.REACT_APP_API_URL,
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      data: {
-        newConditions: test
-      } */
-    }).then((res) => {
-      setPets([...res.data])
-    })
+    await axios.post(`${process.env.REACT_APP_API_URL}pets/filter`,
+      { newConditions: test }).then((res) => {
+        setPets([...res.data])
+      })
   }
 
   const drawerWidth = 240;
@@ -163,7 +152,7 @@ export default function SearchAppBar() {
                   ...register("Dog",
                     {
                       value: true
-                    })} /><label for="checkbox1"> Dog</label>
+                    })} /><label htmlFor="checkbox1"> Dog</label>
               </div>
 
               <div className="filter-slot">
@@ -171,7 +160,7 @@ export default function SearchAppBar() {
                   ...register("Cat",
                     {
                       value: true
-                    })} /><label for="checkbox2"> Cat</label>
+                    })} /><label htmlFor="checkbox2"> Cat</label>
               </div>
 
               <p>Size</p>
@@ -181,7 +170,7 @@ export default function SearchAppBar() {
                   ...register("Small",
                     {
                       value: true
-                    })} /><label for="checkbox3"> Small</label>
+                    })} /><label htmlFor="checkbox3"> Small</label>
               </div>
 
               <div className="filter-slot">
@@ -189,7 +178,7 @@ export default function SearchAppBar() {
                   ...register("Medium",
                     {
                       value: true
-                    })} /><label for="checkbox4"> Medium</label>
+                    })} /><label htmlFor="checkbox4"> Medium</label>
               </div>
 
               <div className="filter-slot">
@@ -197,7 +186,7 @@ export default function SearchAppBar() {
                   ...register("Large",
                     {
                       value: true
-                    })} /><label for="checkbox5"> Large</label>
+                    })} /><label htmlFor="checkbox5"> Large</label>
               </div>
 
               <p className="filter-title">Weight</p>
@@ -247,6 +236,7 @@ export default function SearchAppBar() {
             </Typography>
 
             {window.location.pathname === '/' ? <Link to={'/register-pet'}>Register Pet</Link> : null}
+            {window.location.pathname === '/' ? <Link to={'/register-shelter'}>Register Shelter</Link> : null}
 
             {/* search button*/}
             {
