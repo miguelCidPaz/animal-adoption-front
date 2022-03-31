@@ -107,8 +107,9 @@ export default function SearchAppBar() {
     const weight = ["weight", values];
     test.push(weight);
 
-    await axios({
-      method: 'post',
+    await axios.post(`${process.env.REACT_APP_API_URL}pets/filter`, 
+      { newConditions: test 
+      /* method: 'post',
       url: `${process.env.REACT_APP_API_URL}pets/filter`,
       headers: {
         'Access-Control-Allow-Origin': process.env.REACT_APP_API_URL,
@@ -117,7 +118,7 @@ export default function SearchAppBar() {
       },
       data: {
         newConditions: test
-      }
+      } */
     }).then((res) => {
       setPets([...res.data])
     })
