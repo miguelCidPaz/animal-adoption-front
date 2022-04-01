@@ -1,9 +1,10 @@
 import axios from "axios";
 import md5 from 'md5';
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useContext } from "react"
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import MultiRangeSlider from "./MultiRangeSlider"
+import { petsContext } from "../App";
 
 const RegisterPet = () => {
     const [weight, setWeight] = useState(10)
@@ -16,14 +17,9 @@ const RegisterPet = () => {
     const pass = useRef("");
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
+    const { pets, setPets } = useContext(petsContext);
 
     const verifyUser = async (data) => {
-        /*         const login = await axios.get(`${process.env.REACT_APP_API_URL}shelters/login?id=${data.nameshelter}`)
-                    .then((response) => {
-        
-                    }).catch((error) => {
-        
-                    }) */
         setId(data.nameShelter);
         if (data.nameShelter !== "anonymous") {
             setValid(true)
@@ -79,10 +75,11 @@ const RegisterPet = () => {
 
         const apiURL = process.env.REACT_APP_API_URL;
         await axios.post(`${apiURL}pets/create-pet`,
-            { newPet: [rescue, pet] }).then((res) => {
+            { newPet: [rescue, pet] }).then(async (res) => {
                 /* 🖕 it already works suckers 🖕 */
-                const response = await axios.get(`${apiURL}pets/`);
-                setPets(response.data);
+                await axios.get(`${apiURL}pets/`).then((response) => {
+                    setPets(response.data);
+                });
                 navigate('/')
             })
     }
