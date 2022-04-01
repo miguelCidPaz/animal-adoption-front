@@ -124,7 +124,10 @@
 }
 
 .register--icon{
+    transition: 0.1s;
+    cursor: pointer;
+    color: white;
     &:hover{
-        color: white;
+        color: #ccc;
     }
 }

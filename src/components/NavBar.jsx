@@ -68,12 +68,13 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
+
 export default function SearchAppBar() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const theme = useTheme();
   const navigate = useNavigate();
   const { pets, setPets } = useContext(petsContext);
-  //const [pets, setPets] = useState({});
+  const [viewSearch, setViewSearch] = useState(false);
   const [searchInput, setSearchInput] = useState();
   const [values, setValues] = useState([20, 80]);
   const [open, setOpen] = React.useState(false);
@@ -237,15 +238,11 @@ export default function SearchAppBar() {
               Happy Adoption
             </Typography>
 
-            {window.location.pathname === '/' ? <Link to={'/register-pet'}><PetsIcon className="register--icon" /></Link> : null}
-            {window.location.pathname === '/' ? <Link to={'/register-shelter'}><HomeIcon className="register--icon" /></Link> : null}
-
-            {/* search button*/}
-            {
-              ((window.location.pathname === '/') && <Search>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
+            {window.location.pathname === '/' ? <Link className="register--icon" to={'/register-pet'}><PetsIcon /></Link> : null}
+            {window.location.pathname === '/' ? <Link className="register--icon" to={'/register-shelter'}><HomeIcon /></Link> : null}
+            {window.location.pathname === '/' ? viewSearch ?
+              <Search>
+                <button className="navbar--button-top button--level-search" onClick={(e) => setViewSearch(!viewSearch)} ><SearchIcon className="register--icon" /></button>
                 <StyledInputBase
                   onChange={(event) => setSearchInput(event.target.value)}
                   onKeyDown={(event) => searchPetByName(event)}
@@ -253,8 +250,7 @@ export default function SearchAppBar() {
                   inputProps={{ "aria-label": "search" }}
                 />
               </Search>
-              )
-            }
+              : <button className="navbar--button-top" onClick={(e) => setViewSearch(!viewSearch)} ><SearchIcon className="register--icon" /></button> : null}
           </Toolbar>
         </AppBar>
       </Box>
