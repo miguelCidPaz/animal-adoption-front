@@ -83,7 +83,6 @@ input[type="checkbox"]:checked + label:after {
   }
 }
 
-
 .navbar--button-top{
   background-color: transparent;
   border: none;
@@ -93,6 +92,7 @@ input[type="checkbox"]:checked + label:after {
 
 .button--level-search{
   position: relative;
-  top: 9px;
+  top: 8px;
   left: 5px;
+  margin-right: -31px;
 }
