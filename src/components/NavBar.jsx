@@ -1,6 +1,6 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
-import { useState, useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
 import { useForm } from 'react-hook-form';
 
 import axios from "axios";
@@ -14,6 +14,8 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
+import PetsIcon from '@mui/icons-material/Pets';
+import HomeIcon from '@mui/icons-material/Home';
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import TuneIcon from "@material-ui/icons/Tune";
@@ -102,34 +104,15 @@ export default function SearchAppBar() {
     }
   }
 
-  /**
-   * Recibimos las condiciones, trabajamos sobre memoryPets y devolvemos un arr con las pets filtradas
-   * @param {Conditions} arr 
-   */
-  const filterPets = (arr) => {
-
-  }
-
   const onSubmit = async (resultForm) => {
     const test = Object.entries(resultForm).filter(e => e[1] === true);
     const weight = ["weight", values];
     test.push(weight);
 
-    await axios.post(`${process.env.REACT_APP_API_URL}pets/filter`, 
-      { newConditions: test 
-      /* method: 'post',
-      url: `${process.env.REACT_APP_API_URL}pets/filter`,
-      headers: {
-        'Access-Control-Allow-Origin': process.env.REACT_APP_API_URL,
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      data: {
-        newConditions: test
-      } */
-    }).then((res) => {
-      setPets([...res.data])
-    })
+    await axios.post(`${process.env.REACT_APP_API_URL}pets/filter`,
+      { newConditions: test }).then((res) => {
+        setPets([...res.data])
+      })
   }
 
   const drawerWidth = 240;
@@ -171,7 +154,7 @@ export default function SearchAppBar() {
                   ...register("Dog",
                     {
                       value: true
-                    })} /><label for="checkbox1"> Dog</label>
+                    })} /><label htmlFor="checkbox1"> Dog</label>
               </div>
 
               <div className="filter-slot">
@@ -179,7 +162,7 @@ export default function SearchAppBar() {
                   ...register("Cat",
                     {
                       value: true
-                    })} /><label for="checkbox2"> Cat</label>
+                    })} /><label htmlFor="checkbox2"> Cat</label>
               </div>
 
               <p>Size</p>
@@ -189,7 +172,7 @@ export default function SearchAppBar() {
                   ...register("Small",
                     {
                       value: true
-                    })} /><label for="checkbox3"> Small</label>
+                    })} /><label htmlFor="checkbox3"> Small</label>
               </div>
 
               <div className="filter-slot">
@@ -197,7 +180,7 @@ export default function SearchAppBar() {
                   ...register("Medium",
                     {
                       value: true
-                    })} /><label for="checkbox4"> Medium</label>
+                    })} /><label htmlFor="checkbox4"> Medium</label>
               </div>
 
               <div className="filter-slot">
@@ -205,7 +188,7 @@ export default function SearchAppBar() {
                   ...register("Large",
                     {
                       value: true
-                    })} /><label for="checkbox5"> Large</label>
+                    })} /><label htmlFor="checkbox5"> Large</label>
               </div>
 
               <p className="filter-title">Weight</p>
@@ -253,6 +236,10 @@ export default function SearchAppBar() {
             >
               Happy Adoption
             </Typography>
+
+            {window.location.pathname === '/' ? <Link to={'/register-pet'}><PetsIcon className="register--icon" /></Link> : null}
+            {window.location.pathname === '/' ? <Link to={'/register-shelter'}><HomeIcon className="register--icon" /></Link> : null}
+
             {/* search button*/}
             {
               ((window.location.pathname === '/') && <Search>
