@@ -76,8 +76,13 @@ const RegisterPet = () => {
             description: data.description
         }
 
-        await axios.post(`${process.env.REACT_APP_API_URL}pets/create-pet`,
+
+        const apiURL = process.env.REACT_APP_API_URL;
+        await axios.post(`${apiURL}pets/create-pet`,
             { newPet: [rescue, pet] }).then((res) => {
+                /* 🖕 it already works suckers 🖕 */
+                const response = await axios.get(`${apiURL}pets/`);
+                setPets(response.data);
                 navigate('/')
             })
     }
