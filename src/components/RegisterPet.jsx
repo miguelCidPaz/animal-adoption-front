@@ -126,7 +126,11 @@ const RegisterPet = () => {
                         </select>
 
                         <label htmlFor="email">Email</label>
-                        <input type="text" placeholder="Type your email..." name="email" className="register--input" required {...register("email")} />
+                        <input type="text" placeholder="Type your email..." name="email" className="register--input" required {...register("email",
+                            {
+                                required: { value: true, message: 'Campo requerido' },
+                                pattern: { value: /^\S+@\S+$/i, message: 'Formato no correcto' }
+                            })} />
 
                         <label htmlFor="phone">Phone</label>
                         <input type="text" placeholder="Type your phone number..." name="phone" className="register--input" required {...register("phone")} />
