@@ -23,7 +23,9 @@ const RegisterShelter = () => {
                 <input type="text" name="name" className="register--input" required {
                     ...register("name",
                         {
-                            value: ""
+                            value: "",
+                            required: { value: true, message: 'Campo requerido' },
+                            maxLength: { value: 80, message: 'Tamaño maximo 80' }
                         })
                 } />
 
@@ -31,7 +33,9 @@ const RegisterShelter = () => {
                 <input type="email" name="email" className="register--input" required {
                     ...register("email",
                         {
-                            value: ""
+                            value: "",
+                            required: { value: true, message: 'Campo requerido' },
+                            pattern: { value: /^\S+@\S+$/i, message: 'Formato no correcto' }
                         })
                 } />
 
@@ -44,7 +48,7 @@ const RegisterShelter = () => {
                 } />
 
                 <label htmlFor="pass" className="register--title">Pass</label>
-                <input type="password" name="pass" className="register--input" required {
+                <input type="password" minLength={4} name="pass" className="register--input" required {
                     ...register("pass",
                         {
                             value: ""

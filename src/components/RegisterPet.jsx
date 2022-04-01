@@ -103,7 +103,7 @@ const RegisterPet = () => {
                     <div className="register--modal">
                         <p className="register--modal-title">Welcome</p>
                         <label htmlFor="pass-shelter">Input your pass</label>
-                        <input ref={pass} type="password" name="pass-shelter" className="register--input" />
+                        <input ref={pass} type="password" minLength={4} name="pass-shelter" className="register--input" />
                         <button className="submit-button" onClick={loginShelter}>Enter</button>
                     </div>
                 </div>
