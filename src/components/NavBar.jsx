@@ -1,8 +1,10 @@
 import * as React from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useForm } from 'react-hook-form';
 
 import axios from "axios";
+import { petsContext } from "../App";
 
 import { styled, useTheme } from "@mui/material/styles";
 import { alpha } from "@mui/material/styles";
@@ -12,6 +14,8 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
+import PetsIcon from '@mui/icons-material/Pets';
+import HomeIcon from '@mui/icons-material/Home';
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import TuneIcon from "@material-ui/icons/Tune";
@@ -19,6 +23,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import Drawer from "@mui/material/Drawer";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import MultiRangeSlider from "./MultiRangeSlider";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -64,9 +69,13 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const theme = useTheme();
   const navigate = useNavigate();
+  const { pets, setPets } = useContext(petsContext);
+  //const [pets, setPets] = useState({});
   const [searchInput, setSearchInput] = useState();
+  const [values, setValues] = useState([20, 80]);
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -79,12 +88,33 @@ export default function SearchAppBar() {
 
   async function searchPetByName(event) {
     if (event.keyCode === 13) {
+
       if (searchInput) {
         const pet = await axios.get(`${process.env.REACT_APP_API_URL}pets?name=${searchInput}`);
-        navigate(`/pets/${pet.data[0].id}/details`);
+
+        if (pet.data.length < 2) {
+          navigate(`/pets/${pet.data[0].id}/details`);
+        } else {
+          /* 🖕 it already works suckers 🖕 */
+          setPets(pet.data);
+          navigate(`/`);
+        }
+
       }
     }
   }
+
+  const onSubmit = async (resultForm) => {
+    const test = Object.entries(resultForm).filter(e => e[1] === true);
+    const weight = ["weight", values];
+    test.push(weight);
+
+    await axios.post(`${process.env.REACT_APP_API_URL}pets/filter`,
+      { newConditions: test }).then((res) => {
+        setPets([...res.data])
+      })
+  }
+
   const drawerWidth = 240;
 
   return (
@@ -113,17 +143,60 @@ export default function SearchAppBar() {
         </DrawerHeader>
         <Divider />
         <List>
-          <div>
-            <div>Species</div>
-            <input type="checkbox" value="dog" /><label> Dog</label><br />
-            <input type="checkbox" value="cat" /><label> Cat</label><br />
-            <br />
-            <div>Size</div>
-            <input type="checkbox" value="1" /><label> Small</label><br />
-            <input type="checkbox" value="2" /><label> Average</label><br />
-            <input type="checkbox" value="3" /><label> Big</label><br />
-            <input type="submit" method="get" value="Filter" />
-          </div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+
+            <div className="space-out">
+
+              <p>Species</p>
+
+              <div className="filter-slot">
+                <input id="checkbox1" className="slider" type="checkbox"  {
+                  ...register("Dog",
+                    {
+                      value: true
+                    })} /><label htmlFor="checkbox1"> Dog</label>
+              </div>
+
+              <div className="filter-slot">
+                <input id="checkbox2" className="slider" type="checkbox"  {
+                  ...register("Cat",
+                    {
+                      value: true
+                    })} /><label htmlFor="checkbox2"> Cat</label>
+              </div>
+
+              <p>Size</p>
+
+              <div className="filter-slot">
+                <input id="checkbox3" className="slider" type="checkbox"  {
+                  ...register("Small",
+                    {
+                      value: true
+                    })} /><label htmlFor="checkbox3"> Small</label>
+              </div>
+
+              <div className="filter-slot">
+                <input id="checkbox4" className="slider" type="checkbox"  {
+                  ...register("Medium",
+                    {
+                      value: true
+                    })} /><label htmlFor="checkbox4"> Medium</label>
+              </div>
+
+              <div className="filter-slot">
+                <input id="checkbox5" className="slider" type="checkbox"  {
+                  ...register("Large",
+                    {
+                      value: true
+                    })} /><label htmlFor="checkbox5"> Large</label>
+              </div>
+
+              <p className="filter-title">Weight</p>
+              <MultiRangeSlider value={values} setValue={setValues} />
+              <input className="submit-button" type="submit" method="get" value="Filter" />
+            </div>
+
+          </form>
         </List>
       </Drawer>
 
@@ -152,11 +225,21 @@ export default function SearchAppBar() {
               variant="h6"
               noWrap
               component="div"
-              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-              onClick={() => navigate('/')}
+              sx={{ flexGrow: 1, display: { xs: "block", sm: "block" } }}
+              onClick={async () => {
+                /* 🖕 it already works suckers 🖕 */
+                const apiURL = process.env.REACT_APP_API_URL;
+                const response = await axios.get(`${apiURL}pets/`);
+                setPets(response.data);
+                navigate('/')
+              }}
             >
               Happy Adoption
             </Typography>
+
+            {window.location.pathname === '/' ? <Link to={'/register-pet'}><PetsIcon className="register--icon" /></Link> : null}
+            {window.location.pathname === '/' ? <Link to={'/register-shelter'}><HomeIcon className="register--icon" /></Link> : null}
+
             {/* search button*/}
             {
               ((window.location.pathname === '/') && <Search>

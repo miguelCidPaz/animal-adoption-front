@@ -11,6 +11,8 @@ import Reservation from "./views/Reservation";
 import PetDetails from "./views/PetDetails";
 import NavBar from "./components/NavBar";
 import Completed from "./views/Completed";
+import RegisterPet from "./components/RegisterPet";
+import RegisterShelter from "./components/RegisterShelter";
 
 const petsContext = createContext({
   pets: [],
@@ -24,10 +26,14 @@ const adoptionsContext = createContext({
 
 export { petsContext, adoptionsContext };
 
+/**
+ * Componente Central App
+ * @returns
+ */
 function App() {
   const [pets, setPets] = useState({});
   const [adoptions, setAdoptions] = useState({});
-    const apiURL = process.env.REACT_APP_API_URL;   
+  const apiURL = process.env.REACT_APP_API_URL;
 
   useEffect(async () => {
     const petsResponse = await axios.get(`${apiURL}pets/`);
@@ -36,17 +42,24 @@ function App() {
     setAdoptions([...adoptionsResponse.data]);
   }, [])
 
+  useEffect(() => {
+
+  }, [adoptions])
+
   return (
-    <main>      
+    <main>
       <BrowserRouter>
         <petsContext.Provider value={{ pets, setPets }}>
           <adoptionsContext.Provider value={{ adoptions, setAdoptions }}>
             <NavBar />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/pets/:id/reservation" element={<Reservation />} />
+              <Route path="/register-pet" element={<RegisterPet />} />
+              <Route path="/register-shelter" element={<RegisterShelter />} />
+              <Route path="/pets/:id/reservation" element={<Reservation setAdoptions={setAdoptions} adoptions={adoptions} />} />
               <Route path="/pets/:id/reservation-completed" element={<Completed />} />
               <Route path="/pets/:id/details" element={<PetDetails />} />
+              <Route path="*" element={<Home />} />
             </Routes>
           </adoptionsContext.Provider>
         </petsContext.Provider>

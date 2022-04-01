@@ -8,17 +8,24 @@ $button-hover-color: #34b3d3;
    max-width: 100%;
    display: flex;
    margin-bottom: 8%;
+
+   @media (max-width: 1110px) {
+      flex-direction: column;
+   }
 }
 
 img {
-   width: 450px;
+   width: 100%;
 }
 
 #main {
    border: $main-color solid 20px;
    box-shadow: 0px 0px 8px #888888;
    max-width: 450px;
-   margin: 20px 8% 0px 11%;
+
+   @media (max-width: 800px) {
+      width: 90%;
+   }
 }
 
 .swiper-wrapper {
@@ -26,11 +33,15 @@ img {
 }
 
 .details__pet-name {
-   font-size: 700%;
+   font-size: 90px;
    font-style: italic;
    font-weight: bold;
    color: $main-color;
    margin-bottom: 35px;
+
+   @media (max-width: 1200px) {
+      font-size: 70px;
+   }
 }
 
 .details__pet-description {
@@ -38,14 +49,41 @@ img {
    font-size: 30px;
    color: $secondary-text-color;
    margin-bottom: 40px;
+
+   @media (max-width: 1110px) {
+      font-size: 20px;
+   }
 }
 
 .details__pet-category {
-   font-size: 260%;
+   font-size: 40px;
    margin-bottom: 50px;
    display: flex;
    flex-direction: row;
    flex-wrap: nowrap;
+
+   @media (max-width: 1110px) {
+      font-size: 30px;
+   }
+
+   @media (max-width: 500px) {
+      text-align: center;
+      flex-direction: column;
+      margin: auto;
+
+      span {
+         text-align: center;
+      }
+      ul {
+         margin: auto;
+         text-align: center;
+
+         li {
+            margin: 5px;
+            margin-bottom: 20px;
+         }
+      }
+   }
 }
 
 .details-main {
@@ -87,6 +125,10 @@ img {
    align-items: center;
    font-size: 30px;
    box-shadow: 0px 0px 8px #888888;
+
+   @media (max-width: 600px) {
+      margin: auto;
+   }
 }
 
 .link {
@@ -123,18 +165,30 @@ img {
    border: 2px $secondary-text-color solid;
    width: 650px;
    box-shadow: 0px 0px 8px #888888;
+
+   @media (max-width: 1200px) {
+      width: 90%;
+   }
 }
 .description-title {
    font-size: 50px;
    font-weight: bold;
    color: $main-color;
    margin-bottom: 25px;
+
+   @media (max-width: 400px) {
+      font-size: 30px;
+   }
 }
 
 li {
    margin-bottom: 15px;
    color: $secondary-text-color;
    font-weight: bold;
+
+   @media (max-width: 400px) {
+      font-size: 20px;
+   }
 }
 
 .component {

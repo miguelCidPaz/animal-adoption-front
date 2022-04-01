@@ -1,20 +1,21 @@
-import React from "react";
+//import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
 import axios from "axios";
+//import { petsContext, adoptionsContext } from "../App";
 
-export default function ReservationForm() {
+export default function ReservationForm(props) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name:'',
+      name: '',
       personalID: '',
-      age:'18',
-      address:'',
+      age: '18',
+      address: '',
     }
   });
   const requiredInputErrorMessage = 'this is required';
@@ -23,7 +24,15 @@ export default function ReservationForm() {
 
   async function submitReservation(userInput) {
     const apiURL = process.env.REACT_APP_API_URL;
-    const response = await axios.post(`${apiURL}reservations/${id}`, userInput);
+    await axios.post(`${apiURL}reservations/${id}`, userInput).then(e => {
+      if (e.status === 201) {
+        const response = { ...e.data.reservation }
+        response.adoptionStatus = "reserved"
+        const newAdoption = props.adoptions
+        newAdoption.push(response)
+        props.setAdoptions(newAdoption)
+      }
+    })
     navigate(`/pets/${id}/reservation-completed`);
   }
 
