@@ -14,6 +14,8 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
+import PetsIcon from '@mui/icons-material/Pets';
+import HomeIcon from '@mui/icons-material/Home';
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import TuneIcon from "@material-ui/icons/Tune";
@@ -235,8 +237,8 @@ export default function SearchAppBar() {
               Happy Adoption
             </Typography>
 
-            {window.location.pathname === '/' ? <Link to={'/register-pet'}>Register Pet</Link> : null}
-            {window.location.pathname === '/' ? <Link to={'/register-shelter'}>Register Shelter</Link> : null}
+            {window.location.pathname === '/' ? <Link to={'/register-pet'}><PetsIcon className="register--icon" /></Link> : null}
+            {window.location.pathname === '/' ? <Link to={'/register-shelter'}><HomeIcon className="register--icon" /></Link> : null}
 
             {/* search button*/}
             {

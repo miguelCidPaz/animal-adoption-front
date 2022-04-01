@@ -1,15 +1,18 @@
 .register--main {
     width: 100%;
+    min-height: 64.3vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden;
     padding: 5%;
     padding-top: 1%;
     padding-bottom: 1%;
 
-    form {
+    .register--forms {
         display: flex;
         flex-direction: column;
+        overflow: hidden;
         gap: 50px;
         width: 30%;
         margin: auto;
@@ -18,6 +21,12 @@
             width: 90%;
         }
     }
+}
+
+.img-comprobate {
+    display: none;
+    position: absolute;
+    left: 2500%;
 }
 
 .register--title {
@@ -58,4 +67,64 @@
     border: none;
     outline: none;
     font-size: 20px;
+}
+
+.register--photos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    img {
+        width: 50px;
+        margin: auto;
+    }
+}
+
+.register--found{
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 60%;
+    background-color: rgba(128, 128, 128, 0.44);
+    z-index: 10;
+    border-radius: 20px;
+}
+
+.register--modal{
+    background-color: white;
+    border-radius: 20px;
+    position: absolute;
+    width: 80%;
+    top: 30%;
+    left: 10%;
+    padding: 10%;
+
+    label{
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    input{
+        margin-top: 10px;
+        background-color: #34B3D3;
+        color: white;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+
+    button{
+        width: 100%;
+    }
+}
+
+.register--modal-title{
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.register--icon{
+    &:hover{
+        color: white;
+    }
 }
