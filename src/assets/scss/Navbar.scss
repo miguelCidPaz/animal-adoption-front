@@ -82,3 +82,17 @@ input[type="checkbox"]:checked + label:after {
     color: white;
   }
 }
+
+.navbar--button-top{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  z-index: 10;
+}
+
+.button--level-search{
+  position: relative;
+  top: 8px;
+  left: 5px;
+  margin-right: -31px;
+}

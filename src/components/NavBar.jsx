@@ -14,6 +14,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
+import KeyIcon from '@mui/icons-material/Key';
 import PetsIcon from '@mui/icons-material/Pets';
 import HomeIcon from '@mui/icons-material/Home';
 import Typography from "@mui/material/Typography";
@@ -68,12 +69,13 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function SearchAppBar() {
+
+export default function SearchAppBar(props) {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const theme = useTheme();
   const navigate = useNavigate();
   const { pets, setPets } = useContext(petsContext);
-  //const [pets, setPets] = useState({});
+  const [viewSearch, setViewSearch] = useState(false);
   const [searchInput, setSearchInput] = useState();
   const [values, setValues] = useState([20, 80]);
   const [open, setOpen] = React.useState(false);
@@ -95,7 +97,7 @@ export default function SearchAppBar() {
         if (pet.data.length < 2) {
           navigate(`/pets/${pet.data[0].id}/details`);
         } else {
-          /* 🖕 it already works suckers 🖕 */
+
           setPets(pet.data);
           navigate(`/`);
         }
@@ -237,15 +239,12 @@ export default function SearchAppBar() {
               Happy Adoption
             </Typography>
 
-            {window.location.pathname === '/' ? <Link to={'/register-pet'}><PetsIcon className="register--icon" /></Link> : null}
-            {window.location.pathname === '/' ? <Link to={'/register-shelter'}><HomeIcon className="register--icon" /></Link> : null}
-
-            {/* search button*/}
-            {
-              ((window.location.pathname === '/') && <Search>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
+            {/* {window.location.pathname === '/' ? <button className="navbar--button-top" onClick={(e) => props.setViewLogin(!props.viewLogin)} ><KeyIcon className="register--icon" /></button> : null} */}
+            {window.location.pathname === '/' ? <Link className="register--icon" to={'/register-pet'}><PetsIcon /></Link> : null}
+            {window.location.pathname === '/' ? <Link className="register--icon" to={'/register-shelter'}><HomeIcon /></Link> : null}
+            {window.location.pathname === '/' ? viewSearch ?
+              <Search>
+                <button className="navbar--button-top button--level-search" onClick={(e) => setViewSearch(!viewSearch)} ><SearchIcon className="register--icon" /></button>
                 <StyledInputBase
                   onChange={(event) => setSearchInput(event.target.value)}
                   onKeyDown={(event) => searchPetByName(event)}
@@ -253,8 +252,7 @@ export default function SearchAppBar() {
                   inputProps={{ "aria-label": "search" }}
                 />
               </Search>
-              )
-            }
+              : <button className="navbar--button-top" onClick={(e) => setViewSearch(!viewSearch)} ><SearchIcon className="register--icon" /></button> : null}
           </Toolbar>
         </AppBar>
       </Box>

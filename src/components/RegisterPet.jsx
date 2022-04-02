@@ -109,7 +109,6 @@ const RegisterPet = () => {
                 {layout ?
                     <form className="register--contact" onSubmit={handleSubmit(verifyUser)}>
                         <p className="register--title">CONTACT</p>
-
                         <label htmlFor="nameShelter">Name</label>
                         <select ref={id} name="nameShelter" required {...register("nameShelter")}>
                             <option value={"anonymous"} >Anonymous</option>
