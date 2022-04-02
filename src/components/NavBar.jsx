@@ -14,6 +14,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
+import KeyIcon from '@mui/icons-material/Key';
 import PetsIcon from '@mui/icons-material/Pets';
 import HomeIcon from '@mui/icons-material/Home';
 import Typography from "@mui/material/Typography";
@@ -69,7 +70,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 
-export default function SearchAppBar() {
+export default function SearchAppBar(props) {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const theme = useTheme();
   const navigate = useNavigate();
@@ -238,6 +239,7 @@ export default function SearchAppBar() {
               Happy Adoption
             </Typography>
 
+            {window.location.pathname === '/' ? <button className="navbar--button-top" onClick={(e) => props.setViewLogin(!props.viewLogin)} ><KeyIcon className="register--icon" /></button> : null}
             {window.location.pathname === '/' ? <Link className="register--icon" to={'/register-pet'}><PetsIcon /></Link> : null}
             {window.location.pathname === '/' ? <Link className="register--icon" to={'/register-shelter'}><HomeIcon /></Link> : null}
             {window.location.pathname === '/' ? viewSearch ?

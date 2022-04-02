@@ -35,6 +35,7 @@ function App() {
   const [pets, setPets] = useState({});
   const [adoptions, setAdoptions] = useState({});
   const apiURL = process.env.REACT_APP_API_URL;
+  const [viewLogin, setViewLogin] = useState(false)
 
   useEffect(async () => {
     const petsResponse = await axios.get(`${apiURL}pets/`);
@@ -52,9 +53,9 @@ function App() {
       <BrowserRouter>
         <petsContext.Provider value={{ pets, setPets }}>
           <adoptionsContext.Provider value={{ adoptions, setAdoptions }}>
-            <NavBar />
+            <NavBar viewLogin={viewLogin} setViewLogin={setViewLogin} />
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home viewLogin={viewLogin} />} />
               <Route path="/about-us" element={<AboutUs />} />
               <Route path="/register-pet" element={<RegisterPet />} />
               <Route path="/register-shelter" element={<RegisterShelter />} />
