@@ -97,7 +97,7 @@ export default function SearchAppBar(props) {
         if (pet.data.length < 2) {
           navigate(`/pets/${pet.data[0].id}/details`);
         } else {
-          /* 🖕 it already works suckers 🖕 */
+
           setPets(pet.data);
           navigate(`/`);
         }
@@ -239,7 +239,7 @@ export default function SearchAppBar(props) {
               Happy Adoption
             </Typography>
 
-            {window.location.pathname === '/' ? <button className="navbar--button-top" onClick={(e) => props.setViewLogin(!props.viewLogin)} ><KeyIcon className="register--icon" /></button> : null}
+            {/* {window.location.pathname === '/' ? <button className="navbar--button-top" onClick={(e) => props.setViewLogin(!props.viewLogin)} ><KeyIcon className="register--icon" /></button> : null} */}
             {window.location.pathname === '/' ? <Link className="register--icon" to={'/register-pet'}><PetsIcon /></Link> : null}
             {window.location.pathname === '/' ? <Link className="register--icon" to={'/register-shelter'}><HomeIcon /></Link> : null}
             {window.location.pathname === '/' ? viewSearch ?

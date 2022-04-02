@@ -19,6 +19,8 @@ const RegisterShelter = () => {
 
             <form onSubmit={handleSubmit(registerShelter)}>
 
+                <h2>Register your shelter</h2>
+
                 <label htmlFor="name" className="register--title">Name</label>
                 <input type="text" name="name" className="register--input" required {
                     ...register("name",
