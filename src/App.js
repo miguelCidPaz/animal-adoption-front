@@ -44,8 +44,6 @@ function App() {
   const apiURL = process.env.REACT_APP_API_URL;
   const [viewLogin, setViewLogin] = useState(null)
 
-  console.log('RENDER APP')
-
   useEffect(async () => {
     const petsResponse = await axios.get(`${apiURL}pets/`);
     setPets([...petsResponse.data]);
