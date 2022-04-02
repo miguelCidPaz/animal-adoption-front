@@ -1,19 +1,23 @@
 import { useRef } from "react"
+import { useNavigate } from "react-router-dom"
+import { useContext } from "react";
+import { validationContext } from "../App";
 
 const Login = () => {
+    const navigate = useNavigate();
     const name = useRef("")
     const pass = useRef("")
+    const { validate, setValidate } = useContext(validationContext);
 
-    const comprobate = () => {
-        if (name === process.env.NAME_SUPERUSER && pass === process.env.PASS_SUPERUSER) {
+
+    const comprobate = async () => {
+
+        if (name.current.value === process.env.REACT_APP_NAME_SUPERUSER && pass.current.value === process.env.REACT_APP_PASS_SUPERUSER) {
             console.log("Hello master")
+            setValidate(true)
+            navigate("/admin-pets");
         }
     }
-
-    console.log(process.env)
-    console.log(process.env.REACT_APP_NAME_SUPERUSER)
-    console.log(process.env.REACT_APP_PASS_SUPERUSERR)
-    console.log(process.env.REACT_APP_API_URL)
 
     return (
         <section className="login--background">
@@ -22,6 +26,7 @@ const Login = () => {
                 <input type="text" ref={name} placeholder="Name..." />
                 <input type="password" ref={pass} placeholder="Pass..." />
                 <button onClick={e => comprobate()}>Login</button>
+
             </div>
         </section>
     )
